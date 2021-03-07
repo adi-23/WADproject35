@@ -79,7 +79,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'wadproject',
-        'USER': 'user',
+        'USER': 'root',
         'PASSWORD': 'Aditya@177105',
         'HOST': '127.0.0.1',
         'PORT': '3306',
