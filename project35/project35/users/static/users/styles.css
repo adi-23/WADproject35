@@ -93,3 +93,17 @@ body {
 button:hover {
     background: #2ecc71
 }
+
+.selectWrapper{
+    border-radius:36px;
+    display:inline-block;
+    overflow:hidden;
+    background:#cccccc;
+    border:1px solid #cccccc;
+  }
+  .selectBox{
+    width:260px;
+    height:35px;
+    border:0px;
+    outline:none;
+  }
