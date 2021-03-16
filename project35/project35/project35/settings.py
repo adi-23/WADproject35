@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'project35.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'wadproject',
+        'NAME': 'wadproj35',
         'USER': 'root',
         'PASSWORD': 'Aditya@177105',
         'HOST': '127.0.0.1',
