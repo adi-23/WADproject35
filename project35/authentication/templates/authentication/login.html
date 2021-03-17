@@ -15,6 +15,7 @@
             <div class="card">
                 <form class="box" action="{% url 'login' %}" method="POST">
                     {% csrf_token %}
+                    <button type="button" style="float:right;" class="but">X</button>
                     <h1>Login</h1>
                     {% comment %} <p class="text-muted" style="color:white"> Please enter your username and password!</p> <input type="text" name="username" placeholder="Username"> <input type="password" name="password1" placeholder="Password"> <a class="forgot text-muted" href="/authentication/forgot_password" style="color:#9fb8ad">Forgot password?</a> <input type="submit" value="Login" href="#"> {% endcomment %}
                      <p style="color:white">New user?? Register</p>
