@@ -1,0 +1,54 @@
+{%load static%}
+{% load widget_tweaks %}
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="{% static 'authentication/styles1.css' %}">
+
+  </head>
+  <body>
+    <div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <form class="box" method="POST" action="{% url 'serviceprovider_register' %}">
+                    <h1>Register</h1>
+                    {%csrf_token%}
+                    {% comment %} <p class="text-muted" style="color:white">Enter username and password to register</p> <input type="text" name="" placeholder="Username">
+                        <label for="Select" style="color:white">Pick a service: </label>
+                        <br>
+                        <br>
+                        <select style="width:150px;height:30px;">
+                          <option value="0">Hotels</option>
+                          <option value="1">Restaurants</option>
+                          <option value="2">Shopping malls</option>
+                          <option value="3">Cinema halls</option>
+                          <option value="4">Hospitals</option>
+
+
+                        </select>
+
+                    <input type="password" name="" placeholder="Password"><input type="password" placeholder="Confirm password">  <input type="submit" name="" value="Register" href="#"> {% endcomment %}
+                  {% for field in form.visible_fields %}
+                           <div class="form-group">
+                               {{ field.label_tag }}
+                                  {% render_field field class="form-control" %}
+                                    {% for error in field.errors %}
+                                      <span style="color:red">{{ error }}</span>
+                                    {% endfor %}
+                         {% endfor %}
+                             <input type="submit" value="Register" class="btn btn-block btn-primary">
+                           </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+  </body>
+</html>
