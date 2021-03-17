@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'travel.apps.TravelConfig',
     'authentication.apps.AuthenticationConfig',
+    'hotels.apps.HotelsConfig',
     'widget_tweaks',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -83,7 +84,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'users',
         'USER': 'root',
-        'PASSWORD': 'varshini23',
+        'PASSWORD': 'Aditya@177105',
         'HOST': 'localhost',
         'PORT': '3306',
 
