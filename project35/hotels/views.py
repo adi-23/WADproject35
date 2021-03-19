@@ -16,3 +16,4 @@ def hotels(request):
     hotels_info= Hotel.objects.filter(hotel_place=iid)
     context={'hotelsinfo': hotels_info, }
     return render(request,"hotels/base.html",context)
+

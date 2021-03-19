@@ -44,7 +44,7 @@ def login_request(request):
             user = authenticate(username=username, password=password)
             if user is not None :
                 login(request,user)
-                return redirect('/')
+                return render(request,'authentication/userHomepage.html')
             else:
                 messages.error(request,"Invalid username or password")
         else:
@@ -57,7 +57,9 @@ def logout_view(request):
     logout(request)
     return redirect('/')
 
-
+def home(request):
+    context={}
+    render(request,'authentication/userHomepage.html',context)
 
 
 # def login(request):
