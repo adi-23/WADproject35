@@ -59,7 +59,7 @@ def logout_view(request):
 
 def home(request):
     context={}
-    render(request,'authentication/userHomepage.html',context)
+    render(request,'authentication/home.html')
 
 
 # def login(request):
