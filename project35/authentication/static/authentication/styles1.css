@@ -93,3 +93,8 @@ body {
 button:hover {
     background: #2ecc71
 }
+
+.but:hover
+  {
+      background:whitesmoke;
+  }
