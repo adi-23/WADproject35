@@ -58,7 +58,6 @@ def logout_view(request):
     return redirect('/')
 
 def home(request):
-    context={}
     render(request,'authentication/home.html')
 
 
