@@ -1,0 +1,11 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+    <h1>Welcome, {{user.username}}</h1>
+    {% if user.is_authenticated %}
+          <p>HELLO, {{user.username}}</p>
+          <a href="logout"><button class="button button2">LOGOUT</button></a>
+    {% endif %}
+
+{% endblock %}

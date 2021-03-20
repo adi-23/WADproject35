@@ -1,0 +1,27 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+    <h1><center>Setting new password</center></h1>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <form class="box" action="" method="POST">
+                        <h1>CHANGING PASSWORD</h1>
+                        {% csrf_token %}
+                        <p class="text-muted" style="color:white">Please enter username and new password!</p> 
+                <input type="text" name="username" placeholder="Username"> 
+                <input type="password" name="new password" placeholder="new Password">
+                <input type="password" name="confirm password" placeholder="Confirm password">  
+                <a href="login"><button type="button" name="submit" value="Login" class="button">Login</button></a>
+                <!-- <input type="submit" name="submit" value="Login" href="login"> -->
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+{% endblock %} 

@@ -1,0 +1,33 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        Simple Authentication system
+    </title>
+    <link rel="stylesheet" href="{% static 'style1.css' %}">
+</head>
+<body>
+    <center>
+    {% block content %}
+        <br>
+        <br>
+        <p style='font-size:80px;color:orangered;'><b>SEARCH AND PICK YOUR SERVICES</b></p>
+        {% if user.is_authenticated %}
+            <p>HELLO, {{user.username}}</p>
+            <a href="logout"><button class="button button2">LOGOUT</button></a>   
+          
+          
+        {% else %}
+            <a href="login"><button class="button button2">LOGIN</button></a>
+            <a href="register"><button class="button button2">REGISTER</button></a>
+            <!-- <a href="register"><button class="button button2">REGISTER AS SERVICEPROVIDER</button></a>   -->
+          
+         
+        {% endif %}
+
+    {% endblock %}
+    </center>
+</body>
+</html>

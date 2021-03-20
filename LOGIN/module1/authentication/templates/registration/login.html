@@ -1,0 +1,48 @@
+ {% extends 'index.html' %}
+
+{% block content %}
+
+    <h1><center>System Login</center></h1>
+    
+
+
+
+<!-- {% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="{% static 'style1.css'%}">
+  </head>
+  <body> -->
+    <div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <form class="box" action="login" method="POST">
+                    {% csrf_token %}
+                    <h1>Login</h1>
+                    <p class="text-muted" style="color:white"> Please enter your username and password!</p> 
+                    <input type="text" name="username" placeholder="username"> 
+                    <input type="password" name="password" placeholder="password"> 
+                    <a class="forgot text-muted" href="forget" style="color:#9fb8ad">Forgot password?</a> 
+                    <input type="Submit">
+                    <p style="color:white">New user?? Register</p>
+                    <a href="register"><button type="button" name="button" class="button">Register</button></a>
+                    
+                </form>
+
+                <div>
+                    {% for message in messages %}
+                    <h3> {{message}} </h3>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %} 
+  

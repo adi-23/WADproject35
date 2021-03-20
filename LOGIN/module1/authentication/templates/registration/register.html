@@ -1,0 +1,38 @@
+{% extends 'index.html' %}
+{% block content %}
+
+
+
+<h1><center>Create New Account</center></h1>
+
+  
+    <div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <form class="box" action="register" method="POST">
+                    {% csrf_token %}
+                    <h1>Register</h1>
+                    <p class="text-muted" style="color:white">Enter username and password to register</p> 
+			<input type="text" name="username" placeholder="Username"> 
+			<input type="password" name="password" placeholder="Password">
+			<input type="password" name="password1" placeholder="Confirm password">  
+			<input type="submit" name="submit" value="Register" href="#">
+                </form>
+            
+            <div>
+                {% for message in messages %}
+                <h3> {{message}} </h3>
+                {% endfor %}
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+  
+
+
+
+{% endblock %}

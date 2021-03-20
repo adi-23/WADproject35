@@ -1,5 +1,5 @@
 """
-WSGI config for project35 project.
+WSGI config for module1 project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'project35.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'module1.settings')
 
 application = get_wsgi_application()
