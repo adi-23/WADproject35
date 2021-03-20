@@ -14,6 +14,7 @@ from .form import ServiceProviderSignUpForm, ServiceUserSignUpForm
 # def serviceprovider_register(request):
 #     return render(request,'authentication/serviceprovider_register.html')
 
+
 class serviceuser_register(CreateView):
     model = User
     form_class = ServiceUserSignUpForm
@@ -57,8 +58,8 @@ def logout_view(request):
     logout(request)
     return redirect('/')
 
-def home(request):
-    render(request,'authentication/home.html')
+# def home(request):
+#     render(request,'authentication/home.html')
 
 
 # def login(request):
