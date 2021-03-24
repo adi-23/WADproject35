@@ -38,7 +38,20 @@
     </div>
     <div class="container-fluid">
       <span class="navbar-brand mb-0 h1">Search & Pick services</span>
-      
+      <form action="{% url 'index' %}">
+        {% csrf_token %}
+
+      <select name="places" style="width:250px;height:40px;">
+        <option disabled="true" selected>
+          Select place
+        </option>
+        {% for place in Place %}
+        <option>{{ place.place_name}}</option>
+        {% endfor %}
+
+      </select>
+      <input type="submit" value="Select">
+    </form>      
      
       <ul class="navbar-nav ml-auto">
 

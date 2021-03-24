@@ -7,13 +7,31 @@ from .models import Place,Hotel
 #     context={'hotelsinfo': hotels_info, }
 #     return render(request,"hotels/base.html",context)
 def hotels(request):
+    # iid=0
+    # for place in Place.objects.all():
+    #     if place.place_name=='guntur':
+    #         iid=place.id
+    #         break
+
+    # hotels_info= Hotel.objects.filter(hotel_place=iid)
+    # context={'hotelsinfo': hotels_info, }
+    return render(request,"hotels/hotel.html")       
+
+def index(request):
+    result=request.GET['places']
     iid=0
     for place in Place.objects.all():
-        if place.place_name=='guntur':
+        if place.place_name==result:
+            
             iid=place.id
             break
 
     hotels_info= Hotel.objects.filter(hotel_place=iid)
     context={'hotelsinfo': hotels_info, }
-    return render(request,"hotels/base.html",context)
+    return render(request,"hotels/hotel.html",{
+    'Place':Place.objects.all(),
+    'Hotel':Hotel.objects.all()
+    })
+
+
 
