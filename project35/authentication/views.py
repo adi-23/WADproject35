@@ -45,10 +45,6 @@ def login_request(request):
             user = authenticate(username=username, password=password)
             if user is not None :
                 login(request,user)
-                if user.is_serviceprovider:
-                    return render(request,'authentication/userHomepage.html')
-                else:
-                    return render(request,'authentication/home.html')
             else:
                 messages.error(request,"Invalid username or password")
         else:
