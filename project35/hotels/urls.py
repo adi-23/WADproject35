@@ -1,8 +1,10 @@
 from django.urls import path
 from . import views
 
+
 urlpatterns=[
     path('',views.hotels,name="hotels"),
-    path('',views.index,name="index"),
-    
+    path('hotel/',views.index,name="index"),
+    path('add/',views.add,name="add")
+
 ]
