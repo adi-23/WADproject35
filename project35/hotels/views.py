@@ -60,7 +60,8 @@ def add(request):
 
 
 
-                hotelObj=Hotel(hotel_name=form['hotelName'].value(),hotel_address=form['hotelAddress'].value(),hotel_hasACrooms=form['hotelACrooms'].value(),hotel_place=obj,hotel_contactinfo=form['hotelContactinfo'].value())
+                hotelObj=Hotel(hotel_name=form['hotelName'].value(),hotel_address=form['hotelAddress'].value(),
+                hotel_hasACrooms=form['hotelACrooms'].value(),hotel_place=obj,hotel_contactinfo=form['hotelContactinfo'].value())
                 hotelObj.save()
                 return render(request, "hotels/redir.html")
 
