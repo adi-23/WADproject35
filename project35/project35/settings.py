@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'travel.apps.TravelConfig',
     'authentication.apps.AuthenticationConfig',
     'hotels.apps.HotelsConfig',
+    'restaurants.apps.RestaurantsConfig',
     'widget_tweaks',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -86,9 +87,9 @@ WSGI_APPLICATION = 'project35.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'project',
+        'NAME': 'users',
         'USER': 'root',
-        'PASSWORD': 'varshini23',
+        'PASSWORD': 'Aditya@177105',
         'HOST': 'localhost',
         'PORT': '3306',
 

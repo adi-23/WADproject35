@@ -7,14 +7,6 @@ from .models import User
 from .form import ServiceProviderSignUpForm, ServiceUserSignUpForm
 
 
-# Create your views here.
-# def serviceuser_register(request):
-#     return render(request,'authentication/serviceuser_register.html')
-
-# def serviceprovider_register(request):
-#     return render(request,'authentication/serviceprovider_register.html')
-
-
 class serviceuser_register(CreateView):
     model = User
     form_class = ServiceUserSignUpForm
@@ -46,9 +38,9 @@ def login_request(request):
             if user is not None :
                 login(request,user)
                 if user.is_serviceprovider:
-                        return render(request,'authentication/userHomepage.html')
+                        return render(request,'authentication/userHomepage.html',context={'username': username})
                 else:
-                    return render(request,'authentication/Serviceuserhomepage.html')
+                    return render(request,'authentication/Serviceuserhomepage.html',context={'username': username})
             else:
                 messages.error(request,"Invalid username or password")
         else:
