@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_filters',
+    'bootstrapform',
 ]
 
 AUTH_USER_MODEL = 'authentication.User'
@@ -88,7 +90,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'users',
         'USER': 'root',
-        'PASSWORD': 'Madhesh@777',
+        'PASSWORD': 'Aditya@177105',
         'HOST': 'localhost',
         'PORT': '3306',
 

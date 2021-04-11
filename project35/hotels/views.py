@@ -4,6 +4,9 @@ from django import forms
 from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.http import HttpResponse
+from django.views import View
+from django.views.generic import ListView, DetailView
+from .filters import HotelFilter
 
 
 class NewForm(forms.Form):
@@ -70,3 +73,15 @@ def add(request):
                 return render(request, "hotels/add.html",{
             "form":NewForm()
         })
+
+def HotelListview(request):
+    # model=Hotel
+    # template_name='hotels/hotel_list.html'
+
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     context['filter'] = HotelFilter(self.request.GET, queryset=self.get_queryset())
+    #     return context
+    h = HotelFilter(request.GET)
+    return render(request,'hotels/hotel_list.html',{'filter': h})
+
