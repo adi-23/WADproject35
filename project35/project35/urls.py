@@ -26,6 +26,7 @@ urlpatterns = [
     path('hotels/',include('hotels.urls')),
     path('',include('travel.urls')),
     path('hospitals/',include('hospitals.urls')),
+    path('shops/',include('shops.urls')),
 
 ]
 

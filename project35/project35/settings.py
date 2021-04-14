@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_filters',
     'bootstrapform',
+    'shops.apps.ShopsConfig'
 ]
 
 AUTH_USER_MODEL = 'authentication.User'
