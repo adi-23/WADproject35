@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'authentication.apps.AuthenticationConfig',
     'hotels.apps.HotelsConfig',
     'restaurants.apps.RestaurantsConfig',
+    'hospitals.apps.HospitalsConfig',
     'widget_tweaks',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -90,7 +91,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'users',
         'USER': 'root',
-        'PASSWORD': 'Aditya@177105',
+        'PASSWORD': 'varshini23',
         'HOST': 'localhost',
         'PORT': '3306',
 
@@ -136,5 +137,13 @@ USE_TZ = True
 
 
 STATIC_URL='/static/'                                                         
-STATICFILES_DIRS=[os.path.join(BASE_DIR, 'hotels/static/hotels')]  
+STATICFILES_DIRS=[
+    os.path.join(BASE_DIR, 'hotels/static/hotels'),
+    os.path.join(BASE_DIR,'hospitals/static/hospitals'),
+
+]  
 STATIC_ROOT=os.path.join(BASE_DIR, 'hotels/assets')
+
+
+MEDIA_URL='/media/'
+MEDIA_ROOT=os.path.join(BASE_DIR,'media')
