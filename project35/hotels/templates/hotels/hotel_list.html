@@ -1,8 +1,9 @@
 
 {% load bootstrap %}
 <div class="container">
+    
     <form method="GET">
-    {{ filter.form.as_p }}
+    {{ filter.form }}
     <button type="submit" class="btn btn-secondary"> Search </button>
     </form>
 
@@ -14,7 +15,7 @@
 
         <li>
             {{ hotel.hotel_name }}
-            {{ hotel.hotel_hasACrooms }}
+            
 
         </li>
 

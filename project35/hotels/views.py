@@ -82,6 +82,10 @@ def HotelListview(request):
     #     context = super().get_context_data(**kwargs)
     #     context['filter'] = HotelFilter(self.request.GET, queryset=self.get_queryset())
     #     return context
-    h = HotelFilter(request.GET)
-    return render(request,'hotels/hotel_list.html',{'filter': h})
+    
+
+    h_list=Hotel.objects.all()
+    h = HotelFilter(request.GET,queryset=h_list)
+
+    return render(request,'hotels/hotel_list.html',{'filter': h,'hotels': h_list})
 
