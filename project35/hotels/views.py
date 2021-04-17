@@ -60,7 +60,7 @@ def add(request):
                 if k==0:
                     obj = Place(place_name=form['hotelPlace'].value())
                     obj.save()
-
+                
 
 
                 hotelObj=Hotel(hotel_name=form['hotelName'].value(),hotel_address=form['hotelAddress'].value(),

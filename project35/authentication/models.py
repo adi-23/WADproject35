@@ -18,5 +18,5 @@ class serviceprovider(models.Model):
     business_choices = [('SH','Shops'),('HS','Hostes'),('RS','Restaurents'),('HO','Hospitals'),('SM','Shopping malls'),('CH','Cinema halls'),('TS','Tourism')]
     choice= models.CharField(max_length=2,choices=business_choices)
     #choice = models.CharField(max_length=20)
-
-
+    def __str__(self):
+        return str(self.user)
