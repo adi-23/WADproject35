@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from shops.models import Shop
 from django.template import loader
 from django import forms
+from .filters import ShopFilter
 
 # Create your views here.
 
@@ -32,5 +33,11 @@ def addshop(request):
         shopform=ShopForm()
     return render(request, 'shops/shopadding.html',{'form': shopform})
 
+
+def shops(request):
+    s_list=Shop.objects.all()
+    s = ShopFilter(request.GET,queryset=s_list)
+
+    return render(request,'shops/shops_list.html',{'filter': s,'hotels': s_list})
 
 

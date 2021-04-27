@@ -39,18 +39,20 @@
     </div>
     <div class="container-fluid">
       <span class="navbar-brand mb-0 h1">Search & Pick services</span>
+
       <form action="{% url 'index' %}">
         {% csrf_token %}
-
-      <select name="places" style="width:250px;height:40px;">
-        <option disabled="true" selected>
+      <label>Choose your place</label>
+      <input value="places" list="google">
+      <datalist  id="google" name="places" style="width:250px;height:40px;">
+        <!-- <option disabled="true" selected>
           Select place
-        </option>
+        </option> -->
         {% for place in Place %}
-        <option>{{ place.place_name}}</option>
+        <option value="{{ place.place_name }}">
         {% endfor %}
 
-      </select>
+      </datalist>
       <input type="submit" value="Select">
     </form>
 
@@ -162,7 +164,7 @@
 
         <div class="temp-right">
 
-          <h1> Name: {{hotel.hotel_name}}</h1>
+          <h1>  {{hotel.hotel_name}} hotels </h1>
           <p>Address: {{hotel.hotel_address}}</p>
           {% if hotel.hotel_hasACrooms %}
           <p>

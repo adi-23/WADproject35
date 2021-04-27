@@ -1,0 +1,23 @@
+
+{% load bootstrap %}
+<div class="container">
+    
+    <form method="GET">
+    {{ filter.form }}
+    <button type="submit" class="btn btn-secondary"> Search </button>
+    </form>
+
+
+
+</div>
+<ul>
+    {% for shop in filter.qs %}
+
+        <li>
+            {{ shop.shop_name }}
+            
+
+        </li>
+
+    {% endfor %}
+</ul>
