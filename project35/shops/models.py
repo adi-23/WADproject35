@@ -15,7 +15,9 @@ class Shop(models.Model):
     ('FUN','Furniture')
     ]
     shop_itemtype=models.CharField(max_length=20,choices=item_type,default='HN')
+
     shop_owner=models.ForeignKey(serviceprovider,on_delete=models.CASCADE)
+    
     shop_name=models.CharField(max_length=25)
     shop_address=models.CharField(max_length=100)
     shop_contactinfo=models.CharField(max_length=10)

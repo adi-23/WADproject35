@@ -38,7 +38,7 @@ def login_request(request):
             if user is not None :
                 login(request,user)
                 if user.is_serviceprovider:
-                        return render(request,'authentication/userHomepage.html',context={'username': username})
+                        return render(request,'authentication/userHomepage.html',context={'user': request.user})
                 else:
                     return render(request,'authentication/Serviceuserhomepage.html',context={'username': username})
             else:
