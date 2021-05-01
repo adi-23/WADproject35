@@ -1,5 +1,6 @@
 from django.db import models
 from hotels.models import Place
+from authentication.models import serviceprovider
 from django.core.validators import MinLengthValidator
 
 class CinemaHall(models.Model):
@@ -9,6 +10,8 @@ class CinemaHall(models.Model):
     cinemahall_address       =models.CharField(max_length=100)
     cinemahall_place         =models.ForeignKey(Place,on_delete=models.CASCADE)
     cinemahall_contactinfo   =models.CharField(max_length=10,validators=[MinLengthValidator(10)])
+    current_movie            =models.CharField( max_length=50)
+    theatre_owner            =models.ForeignKey(serviceprovider,on_delete=models.CASCADE)
 
     
 

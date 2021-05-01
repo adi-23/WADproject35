@@ -6,13 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cinemahalls</title>
-    <link rel="stylesheet" href="{% static 'hotels/css/hotel.css'%}">
-    <script src="{% static 'hotels/js/hotel.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'CinemaHalls/css/cinemahalls.css'%}">
+    <link rel="stylesheet" href="{% static 'CinemaHalls/css/cinemahalls1.css'%}">
+    <script src="{% static 'CinemaHalls/js/cinemahalls.js' %}"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" href="st.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
@@ -107,60 +107,50 @@
 
 
   
-  {% for cinemahalls in CinemaHalls %}
-  <section class = "s1">
-      <div class="temp-row">
-        <div class="temp-left">
-          <img src="https://tse3.mm.bing.net/th?id=OIP.D0e-xrdFOIR24GQQ3YKpLQHaE3&pid=Api&P=0&w=246&h=162" width= 45% height= 250px style="vertical-align:top;max-width:100%">
-        </div>
-
-        <div class="temp-right">
-
-          <h1> Name: {{cinemahalls.cinemahall_name}}</h1>
-          <p>Address: {{cinemahalls.cinemahall_address}}</p>
-          <p>Number of Seats: {{cinemahalls.seats}}</p>
-          <p>Timings: {{cinemahalls.timing}}</p>
-          <p>Place: {{cinemahalls.cinemahall_place.place_name}} </p>
-          <p>Contact NO: {{cinemahalls.cinemahall_contactinfo}}</p>
-          <!-- <a href="https://www.trivago.in/" target="_blank">Link for booking</a> -->
-        </div>
-      </div>
-  </section>
-  {% endfor %}
+  
   <br>
   <br>
 
-
+<center>
   <div class="slideshow-container1">
 
     <div class="mySlides fade">
-      <div class="numbertext">1 / 5</div>
-      <img src="https://tse3.mm.bing.net/th?id=OIP.B4xgXKHohn2jNlHx7eJ6kgHaE3&pid=Api&P=0&w=240&h=159" style="max-width:100%;width:100%;height:15%">
+      <div class="img_size">
+        <div class="numbertext">1 / 5</div>
+        <img src="https://tse3.mm.bing.net/th?id=OIP.B4xgXKHohn2jNlHx7eJ6kgHaE3&pid=Api&P=0&w=240&h=159" >
+      </div>
     </div>
 
     <div class="mySlides fade">
-      <div class="numbertext">2 / 5</div>
-      <img src="https://tse4.mm.bing.net/th?id=OIP.80sjn7aicoP1_5aWQQGHfwHaEP&pid=Api&P=0&w=301&h=173" style="max-width:100%;width:100%;height:15%;">
+      <div class="img_size">
+        <div class="numbertext">2 / 5</div>
+        <img src="https://tse4.mm.bing.net/th?id=OIP.80sjn7aicoP1_5aWQQGHfwHaEP&pid=Api&P=0&w=301&h=173" >
+      </div>
     </div>
 
     <div class="mySlides fade">
-      <div class="numbertext">3 / 5</div>
-      <img src="https://tse3.mm.bing.net/th?id=OIP.oOgc4Y6_2wD3GqZjMDEFXwHaE7&pid=Api&P=0&w=243&h=163" style="max-width:100%;width:100%;height:15%;">
+      <div class="img_size">
+        <div class="numbertext">3 / 5</div>
+        <img src="https://tse3.mm.bing.net/th?id=OIP.oOgc4Y6_2wD3GqZjMDEFXwHaE7&pid=Api&P=0&w=243&h=163" >
+      </div>
     </div>
 
     <div class="mySlides fade">
-      <div class="numbertext">4 / 5</div>
-      <img src="{% static 'hotels/img/copy of d1.jpg' %}" style="max-width:100%;width:100%;">
+      <div class="img_size">
+        <div class="numbertext">4 / 5</div>
+        <img src="{% static 'hotels/img/copy of d1.jpg' %}" >
+      </div>
     </div>
 
     <div class="mySlides fade">
-      <div class="numbertext">5 / 5</div>
-      <img src="{% static 'hotels/img/copy of d2.jpg' %}" style="max-width:100%;width:100%;">
+      <div class="img_size">
+        <div class="numbertext">5 / 5</div>
+        <img src="{% static 'hotels/img/copy of d2.jpg' %}" >
+      </div>
     </div>
 
-
-
-    </div>
+  </div>
+</center>
     <br>
 
     <div style="text-align:center">
@@ -178,10 +168,33 @@
 
     <br>
 
+{% if not CinemaHalls %}
+  <h3 style="text-align:center;">There are no Cinemahalls in that place</h3>
 
-
-
-
+{% else %}
+  {% for cinemahalls in CinemaHalls %}
+    <center>
+      <div class="responsive">
+        <div class="polaroid">
+          <div class="row">
+            <div class="col-sm-6">
+              <img src="https://tse3.mm.bing.net/th?id=OIP.D0e-xrdFOIR24GQQ3YKpLQHaE3&pid=Api&P=0&w=246&h=162"  style="vertical-align:top;max-width:100%">
+            </div>
+            <div class="container col-sm-6">
+              <h3> Name: {{cinemahalls.cinemahall_name}}</h1>
+              <p>Address: {{cinemahalls.cinemahall_address}}</p>
+              <p>Number of Seats: {{cinemahalls.seats}}</p>
+              <p>Timings: {{cinemahalls.timing}}</p>
+              <p>Movie : {{cinemahalls.current_movie}}</p>
+              <p>Place: {{cinemahalls.cinemahall_place.place_name}} </p>
+              <p>Contact NO: {{cinemahalls.cinemahall_contactinfo}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </center>
+  {% endfor %}
+{% endif %}
 
 
 
@@ -219,9 +232,5 @@
 
 
     </section>
-
-    {% comment %} <script src="hotel.js">
-
-    </script> {% endcomment %}
       </body>
     </html>
