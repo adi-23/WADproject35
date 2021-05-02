@@ -1,0 +1,51 @@
+{%load static%}
+{% load widget_tweaks %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="{% static 'authentication/styles1.css' %}">
+  </head>
+  <body>
+    <div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <form class="box" action="{% url 'login' %}" method="POST">
+                    {% csrf_token %}
+                    <a href="/">
+                    <button type="button" style="float:right;" class="but">X</button>
+                    </a>
+                    <h1>Login</h1>
+                    {% comment %} <p class="text-muted" style="color:white"> Please enter your username and password!</p> <input type="text" name="username" placeholder="Username"> <input type="password" name="password1" placeholder="Password"> <a class="forgot text-muted" href="/authentication/forgot_password" style="color:#9fb8ad">Forgot password?</a> <input type="submit" value="Login" href="#"> {% endcomment %}
+                     <p style="color:white">New user?? Register</p>
+                    <a href="../serviceuser_register"><button type="button" name="button" class="button">Register as User</button></a> 
+                    <a href="../serviceprovider_register"><button type="button" name="button" class="button">Register as Provider</button></a> 
+                    <!--<input type="submit" name="" value="Register" href="#" class="button">-->
+                    {% comment %} {%for message in messages %}
+                      <h6 style="color:white;">{{message}}</h6>
+                    {% endfor %} {% endcomment %}
+                    {% for field in form.visible_fields %}
+                           <div class="form-group">
+                               {{ field.label_tag }}
+                                  {% render_field field class="form-control" %}
+                                    {% if messages%}
+                                      {% for message in messages %}
+                                        <span style="color:red">{{ message }}</span>
+                                      {% endfor %}
+                                     {% endif %}
+                         {% endfor %}
+                         <br>
+                             <input type="submit" value="Login" class="btn btn-block btn-primary">
+                           </div>
+     
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+  </body>
+</html>
