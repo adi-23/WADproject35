@@ -4,6 +4,9 @@ from django import forms
 from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.http import HttpResponse
+from django.views import View
+from django.views.generic import ListView, DetailView
+from .filters import HotelFilter
 
 
 class NewForm(forms.Form):
@@ -57,10 +60,11 @@ def add(request):
                 if k==0:
                     obj = Place(place_name=form['hotelPlace'].value())
                     obj.save()
+                
 
 
-
-                hotelObj=Hotel(hotel_name=form['hotelName'].value(),hotel_address=form['hotelAddress'].value(),hotel_hasACrooms=form['hotelACrooms'].value(),hotel_place=obj,hotel_contactinfo=form['hotelContactinfo'].value())
+                hotelObj=Hotel(hotel_name=form['hotelName'].value(),hotel_address=form['hotelAddress'].value(),
+                hotel_hasACrooms=form['hotelACrooms'].value(),hotel_place=obj,hotel_contactinfo=form['hotelContactinfo'].value())
                 hotelObj.save()
                 return render(request, "hotels/redir.html")
 
@@ -69,3 +73,19 @@ def add(request):
                 return render(request, "hotels/add.html",{
             "form":NewForm()
         })
+
+def HotelListview(request):
+    # model=Hotel
+    # template_name='hotels/hotel_list.html'
+
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     context['filter'] = HotelFilter(self.request.GET, queryset=self.get_queryset())
+    #     return context
+    
+
+    h_list=Hotel.objects.all()
+    h = HotelFilter(request.GET,queryset=h_list)
+
+    return render(request,'hotels/hotel_list.html',{'filter': h,'hotels': h_list})
+

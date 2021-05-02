@@ -64,9 +64,12 @@
 
       <div class="container">
         <h2 style="text-align: center;"> Welcome to <a> SEARCH and PICK SERVICES</a></h2>
+        
       </div>
       <br>
-
+      <div class="container-fluid">
+        <h3 style="text-align: left">Welcome {{ user.username }} </h3>
+      </div>
 
 
 
@@ -95,24 +98,32 @@
               </div> </button>
             </td>
 
-           <td><button style="height: 300px; width: 400px" type="button" class="btn btn-primary">
+           <td>
+            <a href="{% url 'form' user.pk %}">
+           <button style="height: 300px; width: 400px" type="button" class="btn btn-primary">
             <div class="container">
               <h1 style="font-family: sans-serif;">
                 <strong> CINEMA HALLS</strong>
               </h1>
             </div>
-           </button></td>
+           </button>
+           </a>
+           </td>
           </tr>
           <br>
           <tr>
-            <td><button style="height: 300px; width: 400px" type="button" class="btn btn-primary">
+            <td>
+              <a href="{% url 'hospitalsform'%}">
+              <button style="height: 300px; width: 400px" type="button" class="btn btn-primary">
               <div class="container">
                 <h1 style="font-family: sans-serif;">
                   <strong> HOSPITALS</strong>
                 </h1>
               </div>
               </button>
-           </td>
+              </a>
+            </td>
+
             <td><button style="height: 300px; width: 400px" type="button" class="btn btn-primary">
               <div class="container">
                 <h1 style="font-family: sans-serif;">
@@ -121,14 +132,19 @@
               </div>
               </button>
             </td>
-            <td><button style="height: 300px; width: 400px" type="button" class="btn btn-primary">
-              <div class="container">
+
+            <td>
+              <a href="{% url 'addshop' user.pk %}">
+                <button style="height: 300px; width: 400px" type="button" class="btn btn-primary">
+                <div class="container">
                 <h1 style="font-family: sans-serif;">
-                  <strong>PLACES</strong>
+                  <strong>SHOPS</strong>
                 </h1>
               </div>
               </button>
+              </a>
             </td>
+            
           </tr>
         </tbody>
       </table>

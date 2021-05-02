@@ -15,7 +15,6 @@ import os
 
 
 
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -38,6 +37,9 @@ INSTALLED_APPS = [
     'travel.apps.TravelConfig',
     'authentication.apps.AuthenticationConfig',
     'hotels.apps.HotelsConfig',
+    'restaurants.apps.RestaurantsConfig',
+    'hospitals.apps.HospitalsConfig',
+    'CinemaHalls.apps.CinemahallsConfig',
     'widget_tweaks',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -45,6 +47,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_filters',
+    'bootstrapform',
+    'shops.apps.ShopsConfig'
 ]
 
 AUTH_USER_MODEL = 'authentication.User'
@@ -134,5 +139,13 @@ USE_TZ = True
 
 
 STATIC_URL='/static/'                                                         
-STATICFILES_DIRS=[os.path.join(BASE_DIR, 'hotels/static/hotels')]  
+STATICFILES_DIRS=[
+    os.path.join(BASE_DIR, 'hotels/static/hotels'),
+    os.path.join(BASE_DIR,'hospitals/static/hospitals'),
+
+]  
 STATIC_ROOT=os.path.join(BASE_DIR, 'hotels/assets')
+
+
+MEDIA_URL='/media/'
+MEDIA_ROOT=os.path.join(BASE_DIR,'media')
