@@ -7,4 +7,4 @@ class CinemaHallForm(forms.Form):
     timing                   =forms.CharField(label="Enter the show timings",max_length=100)
     cinemahall_place         =forms.CharField(label="Enter the place",max_length=100)
     cinemahall_contactinfo   =forms.CharField(label="Enter contact number",max_length=10)
-
+    current_movie            =forms.CharField(label="Present movie running in the theatre",max_length=50)

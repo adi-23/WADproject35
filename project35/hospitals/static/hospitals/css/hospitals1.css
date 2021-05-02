@@ -21,6 +21,8 @@ div.polaroid {
   padding: 4px;
   margin-right:10px;
   width:450px;
+  object-fit: cover;
+  height:100%;
 }
 
 div.container-left{

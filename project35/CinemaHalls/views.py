@@ -6,6 +6,7 @@ from django import forms
 from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.http import HttpResponse
+from authentication.models import serviceprovider
 
 # Create your views here.
 
@@ -16,7 +17,7 @@ from django.http import HttpResponse
 
 
 
-def form_view(request):
+def form_view(request,user_id):
         if request.method=="POST":
                 form=CinemaHallForm(request.POST)
 
@@ -32,8 +33,8 @@ def form_view(request):
                     obj.save()
 
 
-
-                cinemaObj=CinemaHall(cinemahall_name=form['cinemahall_name'].value(),seats=form['seats'].value(),timing=form['timing'].value(),cinemahall_address=form['cinemahall_address'].value(),cinemahall_place=obj,cinemahall_contactinfo=form['cinemahall_contactinfo'].value())
+                User=serviceprovider.objects.get(user_id=user_id)
+                cinemaObj=CinemaHall(theatre_owner=User,current_movie=form['current_movie'].value(),cinemahall_name=form['cinemahall_name'].value(),seats=form['seats'].value(),timing=form['timing'].value(),cinemahall_address=form['cinemahall_address'].value(),cinemahall_place=obj,cinemahall_contactinfo=form['cinemahall_contactinfo'].value())
                 cinemaObj.save()
                 return render(request, "authentication/Serviceuserhomepage.html")
 
