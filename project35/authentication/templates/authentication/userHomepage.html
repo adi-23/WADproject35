@@ -68,7 +68,7 @@
       </div>
       <br>
       <div class="container-fluid">
-        <h3 style="text-align: left">Welcome {{ username }} </h3>
+        <h3 style="text-align: left">Welcome {{ user.username }} </h3>
       </div>
 
 
@@ -110,7 +110,7 @@
           <tr>
             <td>
               <a href="{% url 'hospitalsform'%}">
-            <button style="height: 300px; width: 400px" type="button" class="btn btn-primary">
+              <button style="height: 300px; width: 400px" type="button" class="btn btn-primary">
               <div class="container">
                 <h1 style="font-family: sans-serif;">
                   <strong> HOSPITALS</strong>
@@ -118,7 +118,8 @@
               </div>
               </button>
               </a>
-           </td>
+            </td>
+
             <td><button style="height: 300px; width: 400px" type="button" class="btn btn-primary">
               <div class="container">
                 <h1 style="font-family: sans-serif;">
@@ -127,6 +128,7 @@
               </div>
               </button>
             </td>
+
             <td>
               <a href="{% url 'addshop' user.pk %}">
                 <button style="height: 300px; width: 400px" type="button" class="btn btn-primary">

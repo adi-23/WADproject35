@@ -29,7 +29,7 @@
         <a href="#"><i class="fa fa-cutlery space" aria-hidden="true"></i>Restaurants</a>
         <a href="#"><i class="fa fa-shopping-bag space" aria-hidden="true"></i>Shops</a>
         <a href="#"><i class="fa fa-text-width space" aria-hidden="true"></i>Temples</a>
-      </div>
+    </div>
 
 <nav class="navbar navbar-light navbar-expand-lg" style="background-color: #e3f2fd;">
   <div id="main">
@@ -43,8 +43,8 @@
       <form action="{% url 'index' %}">
         {% csrf_token %}
       <label>Choose your place</label>
-      <input value="places" list="google">
-      <datalist  id="google" name="places" style="width:250px;height:40px;">
+      <input  list="google" name='places'>
+      <datalist  id="google" style="width:250px;height:40px;">
         <!-- <option disabled="true" selected>
           Select place
         </option> -->
@@ -60,7 +60,7 @@
 
         <li class="nav-item">
           <a class="nav-link" href=""><i class="fa fa-home space"></i>Home</a>
-      </li>
+        </li>
 
         <li class="nav-item">
             <a class="nav-link" href=""><i class="fa fa-phone space"></i>Contact</a>

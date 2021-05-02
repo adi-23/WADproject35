@@ -27,16 +27,29 @@ class ShopForm(forms.ModelForm):
 
 def addshop(request,user_id):
 
-    if request.method=="POST":
-        shopform=ShopForm(request.POST)
-        shopform.shop_owner_id=user_id
-        if shopform.is_valid():
+    # if request.method=="POST":
+    #     shopform=ShopForm(request.POST)
+    #     shopform.shop_owner_id=user_id
+    #     if shopform.is_valid():
             
-            shopform.save()
+    #         shopform.save()
+    # else:
+
+    user=User.objects.get(id=user_id)
+    shop_sp=serviceprovider.objects.get(user=user)
+    if Shop.objects.filter(shop_owner=shop_sp).exists():
+        #shop_sp=serviceprovider.objects.get(user=user)
+        shop_instance=Shop.objects.get(shop_owner=shop_sp)
+        # shopform=shopform(request,instance=shop_instance)
+        # if shopform.is_valid():
+        #     shopform.save()
+        #     return render(request,"shops/shops.html")
+        return render(request, 'shops/shops.html', context={'shop': shop_instance})
     else:
-        user=User.objects.get(id=user_id)
+        
         shopform=ShopForm(initial={'shop_owner': serviceprovider.objects.get(user=user)})
-    return render(request, 'shops/shopadding.html',{'form': shopform})
+       
+        return render(request, 'shops/shopadding.html',{'form': shopform})
 
 
 def shops(request):
