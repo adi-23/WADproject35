@@ -1,6 +1,7 @@
 from django.db import models
 from hotels.models import Place
 from django.core.validators import MinLengthValidator
+from authentication.models import User,serviceprovider
 
 
 # Create your models here.
@@ -11,3 +12,4 @@ class Hospital(models.Model):
     hospital_place=models.ForeignKey(Place,on_delete=models.CASCADE)
     hospital_address=models.CharField(max_length=100)
     hospital_contactinfo = models.CharField(max_length=10,validators=[MinLengthValidator(10)])
+    hospital_sp=models.ForeignKey(serviceprovider,on_delete=models.CASCADE)

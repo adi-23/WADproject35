@@ -39,17 +39,14 @@
     </div>
     <div class="container-fluid">
       <span class="navbar-brand mb-0 h1">Search & Pick services</span>
-
+      
       <form action="{% url 'index' %}">
         {% csrf_token %}
       <label>Choose your place</label>
-<<<<<<< HEAD
-      <input  list="google" name='places'>
-      <datalist  id="google" style="width:250px;height:40px;">
-=======
+
+
       <input list="google" name="places">
       <datalist  id="google"  style="width:250px;height:40px;">
->>>>>>> e5b74e8e6ca1518d38f36e97653192e1dbbbf0df
         <!-- <option disabled="true" selected>
           Select place
         </option> -->
@@ -60,6 +57,7 @@
       </datalist>
       <input type="submit" value="Select">
     </form>
+    
 
       <ul class="navbar-nav ml-auto">
 
