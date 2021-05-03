@@ -74,7 +74,7 @@ def add(request):
             "form":NewForm()
         })
 
-def HotelListview(request):
+def HotelListview(request,place_id):
     # model=Hotel
     # template_name='hotels/hotel_list.html'
 
@@ -83,8 +83,8 @@ def HotelListview(request):
     #     context['filter'] = HotelFilter(self.request.GET, queryset=self.get_queryset())
     #     return context
     
-
-    h_list=Hotel.objects.all()
+    place=Place.objects.get(id=place_id)
+    h_list=Hotel.objects.filter(hotel_place=place)
     h = HotelFilter(request.GET,queryset=h_list)
 
     return render(request,'hotels/hotel_list.html',{'filter': h,'hotels': h_list})

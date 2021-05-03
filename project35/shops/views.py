@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse,HttpResponseRedirect
 from shops.models import Shop
 from django.template import loader
+from hotels.models import Place
 from django import forms
 from .filters import ShopFilter
 from authentication.models import User,serviceprovider
@@ -52,8 +53,9 @@ def addshop(request,user_id):
         return render(request, 'shops/shopadding.html',{'form': shop_form})
 
 
-def shops(request):
-    s_list=Shop.objects.all()
+def shops(request,place_id):
+    place=Place.objects.get(id=place_id)
+    s_list=Shop.objects.filter(shop_place=place)
     s = ShopFilter(request.GET,queryset=s_list)
 
     return render(request,'shops/shops_list.html',{'filter': s,'hotels': s_list})
