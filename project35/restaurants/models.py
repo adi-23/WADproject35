@@ -12,15 +12,17 @@ class Restaurant(models.Model):
    has_parking=models.BooleanField(default=False)
    resta_contact=models.CharField(max_length=10)
    resta_address=models.CharField(max_length=150)
-   VEG_NONVEG=(('Veg'),('NonVeg'),('Veg&NonVeg'))
+   Veg_Nonveg=[('V','Veg'),('NV','NonVeg'),('V and NV','VegandNonVeg')]
+   restaurant_type=models.CharField(max_length=10,choices=Veg_Nonveg,default='V and NV')
    resta_owner=models.ForeignKey(serviceprovider,on_delete=models.CASCADE)    
    resta_place=models.ForeignKey(Place,on_delete=models.CASCADE)
 
 class Menu(models.Model):
-   food_item=models.ForeignKey(Restaurant,on_delete=models.CASCADE)
+   restaurant=models.ForeignKey(Restaurant,on_delete=models.CASCADE)
    fooditem_name=models.CharField(max_length=20)
-   food_type=models.CharField(max_length=10)
-   food_cost=models.IntegerField()
+   vegornonveg=[('V','Veg'),('NV','NonVeg')]
+   food_type=models.CharField(max_length=10,choices=vegornonveg)
+   food_cost=models.IntegerField(default=0)
    
 def _str_(self):
    return self.resta_name
