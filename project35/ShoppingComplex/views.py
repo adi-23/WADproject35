@@ -3,6 +3,7 @@ from hotels.models import Place
 from authentication.models import serviceprovider
 from .models import ShoppingComplex
 from .forms import ShoppingComplexForm
+from .filters import ShoppingComplexFilter
 # Create your views here.
 
 
@@ -24,6 +25,21 @@ def search(request):
 
     })
 
+
+def ShoppingComplexListview(request,place_id):
+    # model=Hotel
+    # template_name='hotels/hotel_list.html'
+
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     context['filter'] = HotelFilter(self.request.GET, queryset=self.get_queryset())
+    #     return context
+    
+    place=Place.objects.get(id=place_id)
+    shoppingcomplex_list=ShoppingComplex.objects.filter(shoppingcomplex_place=place)
+    h = ShoppingComplexFilter(request.GET,queryset=shoppingcomplex_list)
+
+    return render(request,'ShoppingComplex/shoppingcomplex_list.html',{'filter': h,'shoppingcomplex': shoppingcomplex_list})
 
 
 
