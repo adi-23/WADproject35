@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'restaurants.apps.RestaurantsConfig',
     'hospitals.apps.HospitalsConfig',
     'CinemaHalls.apps.CinemahallsConfig',
+    'ShoppingComplex.apps.ShoppingcomplexConfig',
     'widget_tweaks',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -93,7 +94,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'users',
         'USER': 'root',
-        'PASSWORD': 'Aditya@177105',
+        'PASSWORD': 'varshini23',
         'HOST': 'localhost',
         'PORT': '3306',
 
@@ -142,6 +143,8 @@ STATIC_URL='/static/'
 STATICFILES_DIRS=[
     os.path.join(BASE_DIR, 'hotels/static/hotels'),
     os.path.join(BASE_DIR,'hospitals/static/hospitals'),
+    os.path.join(BASE_DIR,'ShoppingComplex/static/ShoppingComplex'),
+    os.path.join(BASE_DIR,'CinemaHalls/static/CinemaHalls'),
 
 ]  
 STATIC_ROOT=os.path.join(BASE_DIR, 'hotels/assets')
