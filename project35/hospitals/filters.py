@@ -1,7 +1,7 @@
-# import  django_filters
-# from .models import Hospital
+import django_filters
+from .models import Hospital
 
-# class HospitalFilter(django_filters.Filterset):
-#     class Meta:
-#         model=Hospital
-#         fields=('hospital_name','doctors','hospital_place')
+class HospitalFilter(django_filters.FilterSet):
+    class Meta:
+        model=Hospital
+        fields=('hospital_name','doctors')
