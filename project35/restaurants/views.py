@@ -24,7 +24,7 @@ class RestaurantForm(forms.ModelForm):
                 'resta_name':"Enter restaurant name",
                 'has_AC':"AC",
                 'has_delivery':"Delivery",
-                'has_parking':"Delivery",
+                'has_parking':"Parking",
                 'resta_contact':"Contact number",
                 #'resta_owner':"",
                 'restaurant_type':"Veg,NonVeg,Both",
@@ -92,13 +92,13 @@ def restaurant_form(request,user_id):
             form =RestaurantForm()
             return  render(request,'restaurants/restaurantadd.html', {"form": form})
 
-# def menuadd(request,resta_id):
+def menuadd(request,resta_id):
     
-#     if request.method=='POST':
-#         restaurant=Restaurant.objects.get(id=resta_id)
-#         m_form=MenuForm(request.POST)
-#         menuobj=Menu(restaurant=restaurant,fooditem_name=m_form['fooditem_name'].value(),food_type=m_form['food_type']).value(),food_cost=m_form['food_cost'].value())
-#         menuobj.save()        
-#         return 
+    if request.method=='POST':
+        restaurant=Restaurant.objects.get(id=resta_id)
+        m_form=MenuForm(request.POST)
+        menuobj=Menu(restaurant=restaurant,fooditem_name=m_form['fooditem_name'].value(),food_type=m_form['food_type']).value()
+        menuobj.save()        
+        return 
             
         
