@@ -79,7 +79,7 @@
         <tbody>
           <tr>
             <td>
-              <a href="{% url 'add' %}">
+              <a href="{% url 'add' user.pk %}">
              <button style="height: 300px; width: 400px;" type="button" class="btn btn-primary">
                 <div class="container">
                   <h1 style="font-family: sans-serif;">
@@ -90,12 +90,16 @@
            </a>
           </td>
 
-            <td><button style="height: 300px; width: 400px" type="button" class="btn btn-primary">
-              <div class="container">
-                <h1 style="font-family: sans-serif;">
-                  <strong> RESTAURENTS</strong>
-                </h1>
-              </div> </button>
+            <td>
+              <a href="{% url 'restaurant_form' user.pk %}">
+              <button style="height: 300px; width: 400px" type="button" class="btn btn-primary">
+                <div class="container">
+                  <h1 style="font-family: sans-serif;">
+                    <strong> RESTAURENTS</strong>
+                  </h1>
+                </div> 
+              </button>
+              </a>
             </td>
 
            <td>
@@ -113,7 +117,7 @@
           <br>
           <tr>
             <td>
-              <a href="{% url 'hospitalsform'%}">
+              <a href="{% url 'hospitalsform' user.pk %}">
               <button style="height: 300px; width: 400px" type="button" class="btn btn-primary">
               <div class="container">
                 <h1 style="font-family: sans-serif;">

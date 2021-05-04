@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .form import HospitalForm
 from hotels.models import Place
 from .models import Hospital
+from authentication.models import serviceprovider
 
 
 # Create your views here.
@@ -28,7 +29,7 @@ def search(request):
 
 
 
-def form_view(request):
+def form_view(request,user_id):
     if request.method == "POST":
         form=HospitalForm(request.POST,request.FILES)
         k=0
@@ -41,8 +42,8 @@ def form_view(request):
         if k == 0:
             obj=Place(place_name=form['hospitalPlace'].value())
             obj.save()
-
-        hospital = Hospital(doctors=form['doctors'].value(),hospital_name=form['hospitalName'].value(),hospital_image=form['hospitalImage'].value(),hospital_place=obj,hospital_address=form['hospitalAddress'].value(),hospital_contactinfo=form['hospitalContactinfo'].value())
+        h_sp=serviceprovider.objects.get(user_id=user_id)
+        hospital = Hospital(hospital_sp=h_sp,doctors=form['doctors'].value(),hospital_name=form['hospitalName'].value(),hospital_image=form['hospitalImage'].value(),hospital_place=obj,hospital_address=form['hospitalAddress'].value(),hospital_contactinfo=form['hospitalContactinfo'].value())
         hospital.save()
         return render(request,'authentication/Serviceuserhomepage.html')
     else:

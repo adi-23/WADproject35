@@ -1,12 +1,12 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse,HttpResponseRedirect
 from shops.models import Shop
 from django.template import loader
+from hotels.models import Place
 from django import forms
 from .filters import ShopFilter
 from authentication.models import User,serviceprovider
 
-# Create your views here.
 
 class ShopForm(forms.ModelForm):
     
@@ -39,21 +39,23 @@ def addshop(request,user_id):
     shop_sp=serviceprovider.objects.get(user=user)
     if Shop.objects.filter(shop_owner=shop_sp).exists():
         #shop_sp=serviceprovider.objects.get(user=user)
-        shop_instance=Shop.objects.get(shop_owner=shop_sp)
-        # shopform=shopform(request,instance=shop_instance)
-        # if shopform.is_valid():
-        #     shopform.save()
-        #     return render(request,"shops/shops.html")
+        #shop_instance=Shop.objects.get(shop_owner=shop_sp)
+        shop_instance=getattr(Shop,shop_owner=shop_sp)
+        shop_form=ShopForm(request,instance=shop_instance)
+        if shop_form.is_valid():
+            shop_form.save()
+            return render(request,"shops/shops.html")
         return render(request, 'shops/shops.html', context={'shop': shop_instance})
     else:
         
-        shopform=ShopForm(initial={'shop_owner': serviceprovider.objects.get(user=user)})
+        shop_form=ShopForm(initial={'shop_owner': serviceprovider.objects.get(user=user)})
        
-        return render(request, 'shops/shopadding.html',{'form': shopform})
+        return render(request, 'shops/shopadding.html',{'form': shop_form})
 
 
-def shops(request):
-    s_list=Shop.objects.all()
+def shops(request,place_id):
+    place=Place.objects.get(id=place_id)
+    s_list=Shop.objects.filter(shop_place=place)
     s = ShopFilter(request.GET,queryset=s_list)
 
     return render(request,'shops/shops_list.html',{'filter': s,'hotels': s_list})
@@ -62,8 +64,9 @@ def shops(request):
 
 
 def editshops(request,user_id):
-    
-    shop_display=Shop.objects.filter(shop_owner_id=user_id)
+    user=User.objects.get(id=user_id)
+    sp_user=serviceprovider.objects.get(user=user)
+    shop_display=Shop.objects.filter(shop_owner=sp_user)
     # shop_form=ShopForm(instance=shop_display)
     # if request.method == 'POST':
     #     shop_form= ShopForm(request.POST,instance=shop_display)
@@ -72,6 +75,26 @@ def editshops(request,user_id):
     #         return redirect('/')
     # context={'shop_form': shop_form}
     # return render(request,'shops/shopsedit.html',context)
-    context={'shop': shop_display}
-    return render(request,'shops/shopsedit.html',context)
+    # dictionary for initial data with 
+    # field names as keys
+    context ={}
+  
+    # fetch the object related to passed id
+    #obj = get_object_or_404(Shop, id = id)
+  
+    # pass the object as instance in form
+    form = ShopForm(request, instance = shop_display)
+  
+    # save the data from the form and
+    # redirect to detail_view
+    if form.is_valid():
+        form.save()
+        # return HttpResponseRedirect("/"+id)
+  
+    # add form dictionary to context
+    context["form"] = form
+  
+    return render(request, "shops/shopsedit.html", context)
+    # context={'shop': shop_display}
+    # return render(request,'shops/shopsedit.html',context)
 

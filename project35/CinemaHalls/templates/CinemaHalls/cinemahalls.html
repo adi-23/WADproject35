@@ -44,17 +44,23 @@
       <form action="{% url 'select' %}">
         {% csrf_token %}
 
-      <select name="places" style="width:250px;height:40px;">
-        <option disabled="true" selected>
-          Select place
-        </option>
-        {% for place in Place %}
-        <option>{{ place.place_name}}</option>
-        {% endfor %}
+        <label>Choose your place</label>
 
-      </select>
-      <input type="submit" value="Select">
-    </form>
+  
+        <input list="google" name="places">
+        <datalist  id="google"  style="width:250px;height:40px;">
+          <!-- <option disabled="true" selected>
+            Select place
+          </option> -->
+          {% for place in Place %}
+          <option value="{{ place.place_name }}">
+          {% endfor %}
+  
+        </datalist>
+        <input type="submit" value="Select">
+  
+
+      </form>
 
       <ul class="navbar-nav ml-auto">
 

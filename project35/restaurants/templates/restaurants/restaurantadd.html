@@ -1,0 +1,51 @@
+{%load static%}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CinemaHalls</title>
+    <link rel="stylesheet" href="{% static 'CinemaHalls/css/halls.css'%}">
+   
+</head>
+<body class="background">
+    <div>
+   
+        
+            <form class="box container" action="{% url 'restaurant_form' user.pk%}" method="POST">
+                <h1>Add Your Restaurant Details</h1>
+                {% csrf_token %}
+                <table>
+                <div class="row">
+                    <div class="col-75">
+                        {{ form.as_table }}
+                    </div>
+                </div>
+                </table>
+                
+                
+                
+                
+                
+
+                <center>
+                <input  type="submit" class="btnbtn-primary" value="submit">
+                </center>
+                
+            </form>
+            
+
+            {% if messages%}
+                {% for message in messages %}
+                    <span style="color:red">{{ message }}</span
+                {% endfor %}
+            {% endif %}
+        
+    </div>
+    
+    
+</body>
+</html>
