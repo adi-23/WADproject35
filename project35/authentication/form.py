@@ -22,8 +22,7 @@ class ServiceUserSignUpForm(UserCreationForm):
 
 
 class ServiceProviderSignUpForm(UserCreationForm):
-    business_choices = [('SH','Shops'),('HS','Hostels'),('RS','Restaurents'),('HO','Hospitals'),('SM','Shopping malls'),('CH','Cinema halls'),('TS','Tourism')]
-    choice = forms.ChoiceField(choices=business_choices,required=True)
+
 
     class Meta(UserCreationForm.Meta):
         model = User
