@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Place,Hotel
+from authentication.models import serviceprovider,User
 from django import forms
 from django.urls import reverse
 from django.http import HttpResponseRedirect
@@ -46,7 +47,7 @@ def index(request):
     })
 
 
-def add(request):
+def add(request,user_id):
         if request.method=="POST":
                 form=NewForm(request.POST)
 
@@ -61,9 +62,9 @@ def add(request):
                     obj = Place(place_name=form['hotelPlace'].value())
                     obj.save()
                 
-
-
-                hotelObj=Hotel(hotel_name=form['hotelName'].value(),hotel_address=form['hotelAddress'].value(),
+                
+                hotel_sp=serviceprovider.objects.get(user_id=user_id)
+                hotelObj=Hotel(hotel_owner=hotel_sp,hotel_name=form['hotelName'].value(),hotel_address=form['hotelAddress'].value(),
                 hotel_hasACrooms=form['hotelACrooms'].value(),hotel_place=obj,hotel_contactinfo=form['hotelContactinfo'].value())
                 hotelObj.save()
                 return render(request, "hotels/redir.html")
