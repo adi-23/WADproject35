@@ -3,7 +3,7 @@ from .form import HospitalForm
 from hotels.models import Place
 from .models import Hospital
 from authentication.models import serviceprovider
-
+from .filters import HospitalFilter
 
 # Create your views here.
 
@@ -54,3 +54,20 @@ def form_view(request,user_id):
 def hospitals(request):
     places=Place.objects.all()
     return render(request,'hospitals/hospitals.html',{'Place':places})
+
+
+
+def HospitalListview(request,place_id):
+    # model=Hotel
+    # template_name='hotels/hotel_list.html'
+
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     context['filter'] = HotelFilter(self.request.GET, queryset=self.get_queryset())
+    #     return context
+    
+    place=Place.objects.get(id=place_id)
+    hospital_list=Hospital.objects.filter(hospital_place=place)
+    h = HospitalFilter(request.GET,queryset=hospital_list)
+
+    return render(request,'hospitals/hospital_list.html',{'filter': h,'hospital': hospital_list})

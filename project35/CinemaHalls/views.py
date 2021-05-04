@@ -7,7 +7,7 @@ from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.http import HttpResponse
 from authentication.models import serviceprovider
-
+from .filters import CinemaHallFilter
 # Create your views here.
 
 # def form_view(request):
@@ -70,5 +70,26 @@ def select(request):
 
 
 
+def CinemaHallListview(request,place_id):
+    # model=Hotel
+    # template_name='hotels/hotel_list.html'
+
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     context['filter'] = HotelFilter(self.request.GET, queryset=self.get_queryset())
+    #     return context
+    
+    place=Place.objects.get(id=place_id)
+    theatre_list=CinemaHall.objects.filter(cinemahall_place=place)
+    h = CinemaHallFilter(request.GET,queryset=theatre_list)
+
+    return render(request,'cinemahalls/cinemahalls_list.html',{'filter': h,'cinemahall': theatre_list})
+
+
+
+
 def aboutus(request):
     return render(request,"CinemaHalls/AboutUs.html")
+
+
+

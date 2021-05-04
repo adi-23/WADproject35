@@ -37,17 +37,18 @@ def addshop(request,user_id):
 
     user=User.objects.get(id=user_id)
     shop_sp=serviceprovider.objects.get(user=user)
-    if Shop.objects.filter(shop_owner=shop_sp).exists():
+    if (Shop.objects.filter(shop_owner=shop_sp)) is not None:
         #shop_sp=serviceprovider.objects.get(user=user)
-        #shop_instance=Shop.objects.get(shop_owner=shop_sp)
-        shop_instance=getattr(Shop,shop_owner=shop_sp)
+        shop_instance=Shop.objects.filter(shop_owner=shop_sp)
+        print('hi')
+        
         shop_form=ShopForm(request,instance=shop_instance)
         if shop_form.is_valid():
             shop_form.save()
-            return render(request,"shops/shops.html")
+            # return render(request,"shops/shops.html")
         return render(request, 'shops/shops.html', context={'shop': shop_instance})
     else:
-        
+        print('else')
         shop_form=ShopForm(initial={'shop_owner': serviceprovider.objects.get(user=user)})
        
         return render(request, 'shops/shopadding.html',{'form': shop_form})

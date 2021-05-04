@@ -11,10 +11,11 @@
 
 </div>
 <ul>
-    {% for shop in filter.qs %}
+    {% for hospital in filter.qs %}
 
         <li>
-            {{ shop.shop_name }}
+            {{ hospital.hospital_name }}
+            {{ hospital_place}}
             
 
         </li>
