@@ -16,7 +16,7 @@
 
 
 </head>
-<body style="background:lightgray" onLoad="showSlides(); viewSlides();">
+<body  onLoad="showSlides(); viewSlides();">
 
 
     <div id="mySidenav" class="sidenav">
@@ -30,18 +30,18 @@
         <a href="#"><i class="fa fa-text-width space" aria-hidden="true"></i>Temples</a>
     </div>
 
-<nav class="navbar navbar-light navbar-expand-lg" style="background-color: #e3f2fd;">
+<nav class="navbar navbar-light navbar-expand-lg" style="background-color: #3d84a8;">
   <div id="main">
 
-    <button class="btn btn-primary" onclick="openNav()"&#9776;><i class="fa fa-ellipsis-v"></i></button>
+    <button style="color: white;" class="btn btn-primary" onclick="openNav()"&#9776;><i style="color: white;" class="fa fa-ellipsis-v"></i></button>
 
     </div>
     <div class="container-fluid">
-      <span class="navbar-brand mb-0 h1">Search & Pick services</span>
+      <span style="color: white;" class="navbar-brand mb-0 h1">Search & Pick services</span>
       
       <form action="{% url 'shoppingcomplexsearch' %}">
         {% csrf_token %}
-      <label>Choose your place</label>
+      <label style="color: white;">Choose your place</label>
 
 
       <input list="google" name="places">
@@ -58,30 +58,30 @@
     </form>
     
 
-      <ul class="navbar-nav ml-auto">
+    <ul class="navbar-nav ml-auto">
 
-        <li class="nav-item">
-          <a class="nav-link" href=""><i class="fa fa-home space"></i>Home</a>
-        </li>
-
-        <li class="nav-item">
-            <a class="nav-link" href=""><i class="fa fa-phone space"></i>Contact</a>
-        </li>
-        <li class="nav-item"><a class="nav-link" href="">
-          <i class="fa fa-question-circle"></i>
-          Help
-        </a></li>
-        <li class="nav-item">
-          <a class="nav-link" href="/">
-            <i class="fa fa-sign-out"></i>
-            Logout
-        </a>
-
-
+      <li class="nav-item">
+        <a style="color:white;" class="nav-link" href=""><i style="color:white;" class="fa fa-home space"></i>Home</a>
       </li>
 
+      <li class="nav-item">
+          <a style="color:white;" class="nav-link" href=""><i style="color:white;" class="fa fa-phone space"></i>Contact</a>
+      </li>
+      <li class="nav-item"><a style="color:white;" class="nav-link" href="">
+        <i style="color:white;" class="fa fa-question-circle"></i>
+        Help
+      </a></li>
+      <li class="nav-item">
+        <a style="color:white;" class="nav-link" href="/">
+          <i style="color:white;" class="fa fa-sign-out"></i>
+          Logout
+      </a>
 
-    </ul>
+
+    </li>
+
+
+  </ul>
 
 
 
@@ -89,10 +89,6 @@
     </div>
   </nav>
 
-    <div class="container1">
-        <img src="https://tse3.mm.bing.net/th?id=OIP.ED1tMo0HrkUcRXJRJ6yB4gHaDz&pid=Api&P=0&w=346&h=178" alt="shoppingcomplex" >
-        <div class="centered">SHOPPING COMPLEX</div>
-      </div>
 
 
       <br>
@@ -106,65 +102,6 @@
 
   <br>
   <br>
-
-
-<center>
-  <div class="slideshow-container1">
-
-    <div class="mySlides fade">
-        <div class="img_size">
-      <div class="numbertext">1 / 5</div>
-      <img src="https://tse3.mm.bing.net/th?id=OIP.B4xgXKHohn2jNlHx7eJ6kgHaE3&pid=Api&P=0&w=240&h=159" >
-    </div>
-    </div>
-
-    <div class="mySlides fade">
-          <div class="img_size">
-      <div class="numbertext">2 / 5</div>
-      <img src="https://tse4.mm.bing.net/th?id=OIP.80sjn7aicoP1_5aWQQGHfwHaEP&pid=Api&P=0&w=301&h=173" >
-    </div>
-    </div>
-
-    <div class="mySlides fade">
-      <div class="img_size">    
-      <div class="numbertext">3 / 5</div>
-      <img src="https://tse3.mm.bing.net/th?id=OIP.oOgc4Y6_2wD3GqZjMDEFXwHaE7&pid=Api&P=0&w=243&h=163" >
-    </div>
-    </div>
-
-    <div class="mySlides fade">
-          <div class="img_size">
-      <div class="numbertext">4 / 5</div>
-      <img src="{% static 'ShoppingComplex/img/copy of d1.jpg' %}" >
-    </div>
-    </div>
-
-    <div class="mySlides fade">
-          <div class="img_size">
-      <div class="numbertext">5 / 5</div>
-      <img src="{% static 'ShoppingComplex/img/copy of d2.jpg' %}" >
-    </div>
-    </div>
-
-    </div>
-</center>
-
-    <br>
-
-    <div style="text-align:center">
-      <span class="dot" ></span>
-      <span class="dot" ></span>
-      <span class="dot" ></span>
-      <span class="dot" ></span>
-      <span class="dot" ></span>
-
-    </div>
-
-
-
-    <br>
-
-    <br>
 
 {%if not shoppingMalls %}
       <h2 style="text-align:center;">There are no ShoppingComplex in this place</h2>
@@ -180,7 +117,7 @@
                         </div>
                         <div class="container col-sm-6">
 
-                          <h3>  {{shoppingcomplex.shoppingcomplex_name}}</h1>
+                          <h3>  {{shoppingcomplex.shoppingcomplex_name}}</h3>
                           <p>Address: {{shoppingcomplex.shoppingcomplex_address}}</p>
                           <p>No.of Floors:{{shoppingcomplex.shoppingcomplex_hasFloors}}</p>
                           <p>Place: {{shoppingcomplex.shoppingcomplex_place.place_name}} </p>
@@ -207,7 +144,66 @@
 
 
 
-    <section id="footer">
+    <center>
+      <div class="slideshow-container1">
+    
+        <div class="mySlides fade">
+            <div class="img_size">
+          <div class="numbertext">1 / 5</div>
+          <img src="https://tse3.mm.bing.net/th?id=OIP.B4xgXKHohn2jNlHx7eJ6kgHaE3&pid=Api&P=0&w=240&h=159" >
+        </div>
+        </div>
+    
+        <div class="mySlides fade">
+              <div class="img_size">
+          <div class="numbertext">2 / 5</div>
+          <img src="https://tse4.mm.bing.net/th?id=OIP.80sjn7aicoP1_5aWQQGHfwHaEP&pid=Api&P=0&w=301&h=173" >
+        </div>
+        </div>
+    
+        <div class="mySlides fade">
+          <div class="img_size">    
+          <div class="numbertext">3 / 5</div>
+          <img src="https://tse3.mm.bing.net/th?id=OIP.oOgc4Y6_2wD3GqZjMDEFXwHaE7&pid=Api&P=0&w=243&h=163" >
+        </div>
+        </div>
+    
+        <div class="mySlides fade">
+              <div class="img_size">
+          <div class="numbertext">4 / 5</div>
+          <img src="{% static 'ShoppingComplex/img/copy of d1.jpg' %}" >
+        </div>
+        </div>
+    
+        <div class="mySlides fade">
+              <div class="img_size">
+          <div class="numbertext">5 / 5</div>
+          <img src="{% static 'ShoppingComplex/img/copy of d2.jpg' %}" >
+        </div>
+        </div>
+    
+        </div>
+    </center>
+    
+        <br>
+    
+        <div style="text-align:center">
+          <span class="dot" ></span>
+          <span class="dot" ></span>
+          <span class="dot" ></span>
+          <span class="dot" ></span>
+          <span class="dot" ></span>
+    
+        </div>
+    
+    
+    
+        <br>
+    
+        <br>
+    
+
+    <section style="background-color: #3d84a8;" id="footer">
         <center>
             <div class="title-text">
             <p>CONTACT</p>
@@ -227,6 +223,7 @@
                         <p>Mail: example@gmail.com <i class="fa fa-paper-plane" aria-hidden="true"></i></p>
                         <p>Phone number: 1223334521 <i class="fa fa-phone" aria-hidden="true"></i></p>
                 </div>
+            </div>
 
 
 
