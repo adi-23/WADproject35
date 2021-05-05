@@ -102,3 +102,14 @@ def menuadd(request,resta_id):
         return 
             
         
+
+def aboutus(request):
+    return render(request,"Visitplace/AboutUs.html")
+
+
+def contact(request):
+    return render(request,"Visitplace/Contact.html")
+
+
+def homepage(request):
+    return render(request,'authentication/Serviceuserhomepage.html')

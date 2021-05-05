@@ -22,14 +22,15 @@
 
     <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="#"><i class="fa fa-plus space" aria-hidden="true"></i>Hospitals</a>
-        <a href="#"><i class="fa fa-bed space" aria-hidden="true"></i>Hotels</a>
-        <a href="#"><i class="fa fa-film space" aria-hidden="true"></i>Cinema Halls</a>
-        <a href="#"><i class="fa fa-shopping-cart space" aria-hidden="true"></i>Shopping Malls</a>
+        <a href="{% url 'hospitals' %}"><i class="fa fa-plus space" aria-hidden="true"></i>Hospitals</a>
+        <a href="{% url 'hotels' %}"><i class="fa fa-bed space" aria-hidden="true"></i>Hotels</a>
+        <a href="{% url 'cinemahalls' %}"><i class="fa fa-film space" aria-hidden="true"></i>Cinema Halls</a>
+        <a href="{% url 'shoppingcomplex' %}"><i class="fa fa-shopping-cart space" aria-hidden="true"></i>Shopping Malls</a>
         <a href="#"><i class="fa fa-cutlery space" aria-hidden="true"></i>Restaurants</a>
         <a href="#"><i class="fa fa-shopping-bag space" aria-hidden="true"></i>Shops</a>
-        <a href="#"><i class="fa fa-text-width space" aria-hidden="true"></i>Temples</a>
-    </div>
+        <a href="{% url 'show' %}"><i class="fa fa-text-width space" aria-hidden="true"></i>Attractions</a>
+      </div>
+
 
 <nav class="navbar navbar-light navbar-expand-lg" style="background-color: #3d84a8; color:white">
   <div id="main">
@@ -62,22 +63,21 @@
       <ul class="navbar-nav ml-auto">
 
         <li class="nav-item">
-          <a style="color:white;" class="nav-link" href=""><i style="color:white;" class="fa fa-home space"></i>Home</a>
-        </li>
+          <a class="nav-link" href="{% url 'homepage' %}"><i class="fa fa-home space"></i>Home</a>
+      </li>
 
         <li class="nav-item">
-            <a style="color:white;" class="nav-link" href=""><i style="color:white;" class="fa fa-phone space"></i>Contact</a>
+            <a class="nav-link" href="{% url 'contact' %}"><i class="fa fa-phone space"></i>Contact</a>
         </li>
-        <li class="nav-item"><a style="color:white;" class="nav-link" href="">
-          <i style="color:white;" class="fa fa-question-circle"></i>
+        <li class="nav-item"><a class="nav-link" href="">
+          <i class="fa fa-question-circle"></i>
           Help
         </a></li>
         <li class="nav-item">
-          <a style="color:white;" class="nav-link" href="/">
-            <i style="color:white;" class="fa fa-sign-out"></i>
+          <a class="nav-link" href="/">
+            <i class="fa fa-sign-out"></i>
             Logout
         </a>
-
 
       </li>
 
@@ -211,18 +211,17 @@
 
 
 
-
-    <section style="background-color: #3d84a8;" id="footer">
+<section id="footer">
         <center>
             <div class="title-text">
-            <p>CONTACT</p>
-            <h1>Visit Shop Today</h1>
+            <h2><b>Thank You For Visiting Our Website <i class="fa fa-smile-o" aria-hidden="true"></i></b></h2>
+            
             </div>
         </center>
 
             <div class="footer-row">
                 <div class="footer-left">
-                    <h1>About Us</h1>
+                    <a href="{% url 'aboutus' %}"><h1>About Us</h1><a>
                     <p>Hello, Welcome to 'Search and pick'. </p>
                     <p>We help you to get best services in a particular location you selected</p>
                 </div>
@@ -238,8 +237,7 @@
 
     </section>
 
-    {% comment %} <script src="hotel.js">
-
-    </script> {% endcomment %}
+    
+    
       </body>
     </html>

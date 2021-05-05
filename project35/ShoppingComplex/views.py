@@ -69,3 +69,16 @@ def form_view(request,user_id):
 def shoppingcomplex(request):
     places=Place.objects.all()
     return render(request,'ShoppingComplex/shopping.html',{'Place':places})
+
+
+
+def aboutus(request):
+    return render(request,"Visitplace/AboutUs.html")
+
+
+def contact(request):
+    return render(request,"Visitplace/Contact.html")
+
+
+def homepage(request):
+    return render(request,'authentication/Serviceuserhomepage.html')

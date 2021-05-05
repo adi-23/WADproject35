@@ -34,6 +34,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'Visitplace.apps.VisitplaceConfig',
     'travel.apps.TravelConfig',
     'authentication.apps.AuthenticationConfig',
     'hotels.apps.HotelsConfig',
@@ -94,7 +95,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'users',
         'USER': 'root',
-        'PASSWORD': 'Lilly1030',
+        'PASSWORD': 'nishu@11',
         'HOST': 'localhost',
         'PORT': '3306',
 
