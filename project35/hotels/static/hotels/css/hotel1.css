@@ -61,7 +61,8 @@ div.container{
     padding: 0 6px;
     /* float: left; */
     /* width: 24.99999%; */
-    width: 100%;
+    width: 75%;
+    box-shadow: 5px 10px 18px #888888;
   }
 
   * {
