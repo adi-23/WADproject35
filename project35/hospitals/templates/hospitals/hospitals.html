@@ -45,10 +45,10 @@
         {% csrf_token %}
 
 
-        <label>Choose your place</label>
+      
 
   
-        <input list="google" name="places">
+        <input list="google" placeholder="Choose your place" name="places">
         <datalist  id="google"  style="width:250px;height:40px;">
           <!-- <option disabled="true" selected>
             Select place
@@ -58,7 +58,7 @@
           {% endfor %}
   
         </datalist>
-        <input type="submit" value="Select">
+        <button type="submit"><i class="fa fa-search"></i></button> 
   
 
       </form>
