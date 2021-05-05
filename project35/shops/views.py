@@ -35,23 +35,37 @@ def addshop(request,user_id):
     #         shopform.save()
     # else:
 
-    user=User.objects.get(id=user_id)
-    shop_sp=serviceprovider.objects.get(user=user)
+    
+    shop_sp=serviceprovider.objects.get(user_id=user_id)
+    print(shop_sp)
     if (Shop.objects.filter(shop_owner=shop_sp)) is not None:
         #shop_sp=serviceprovider.objects.get(user=user)
-        shop_instance=Shop.objects.filter(shop_owner=shop_sp)
-        print('hi')
-        
-        shop_form=ShopForm(request,instance=shop_instance)
-        if shop_form.is_valid():
-            shop_form.save()
-            # return render(request,"shops/shops.html")
-        return render(request, 'shops/shops.html', context={'shop': shop_instance})
+        shop_instance=Shop.objects.get(shop_owner=shop_sp)
+        print(shop_instance) 
+        shop_form=ShopForm(instance=shop_instance)
+        if request.method=='POST':
+            shiop_form=ShopForm(request.POST or None,instance=shop_instance)
+            if shop_form.is_valid():
+                shop_obj=shop_form.save()
+                return render(request,"shops/shops.html")
+            else:
+                return render(request, 'shops/shopadding.html', context={'form': shop_form})
     else:
         print('else')
-        shop_form=ShopForm(initial={'shop_owner': serviceprovider.objects.get(user=user)})
+        shop_form=ShopForm(initial={'shop_owner': serviceprovider.objects.get(user_id=user_id)})
+        if request.method=='POST':
+            shop_form=ShopForm(request.POST or None,initial={'shop_owner': serviceprovider.objects.get(user_d=user_id)})
+            if shop_form.is_valid():
+                shopobj=shop_form(commit=False)
+                shopobj.shop_owner=shop_sp
+                shopobj.save()
+                return render(request,'authentication/ServiceuserHompepage.html')
+            else:
+                return render(request,'shops/shopadding.html')
+        else:
+            return render(request,'shops/shopadding.html',{'form': shop_form})
        
-        return render(request, 'shops/shopadding.html',{'form': shop_form})
+            
 
 
 def shops(request,place_id):
