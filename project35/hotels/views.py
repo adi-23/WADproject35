@@ -90,3 +90,15 @@ def HotelListview(request,place_id):
 
     return render(request,'hotels/hotel_list.html',{'filter': h,'hotels': h_list})
 
+
+
+def aboutus(request):
+    return render(request,"Visitplace/AboutUs.html")
+
+
+def contact(request):
+    return render(request,"Visitplace/Contact.html")
+
+
+def homepage(request):
+    return render(request,'authentication/Serviceuserhomepage.html')

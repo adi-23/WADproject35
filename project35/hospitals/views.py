@@ -71,3 +71,15 @@ def HospitalListview(request,place_id):
     h = HospitalFilter(request.GET,queryset=hospital_list)
 
     return render(request,'hospitals/hospital_list.html',{'filter': h,'hospital': hospital_list})
+
+
+def aboutus(request):
+    return render(request,"Visitplace/AboutUs.html")
+
+
+def contact(request):
+    return render(request,"Visitplace/Contact.html")
+
+
+def homepage(request):
+    return render(request,'authentication/Serviceuserhomepage.html')

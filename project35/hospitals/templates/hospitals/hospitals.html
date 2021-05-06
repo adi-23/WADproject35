@@ -24,14 +24,14 @@
 
     <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="{% url 'hospitals'%}"><i class="fa fa-plus space" aria-hidden="true"></i>Hospitals</a>
-        <a href="{% url 'hotels'%}"><i class="fa fa-bed space" aria-hidden="true"></i>Hotels</a>
-        <a href="#"><i class="fa fa-film space" aria-hidden="true"></i>Cinema Halls</a>
-        <a href="#"><i class="fa fa-shopping-cart space" aria-hidden="true"></i>Shopping Malls</a>
+        <a href="{% url 'hospitals' %}"><i class="fa fa-plus space" aria-hidden="true"></i>Hospitals</a>
+        <a href="{% url 'hotels' %}"><i class="fa fa-bed space" aria-hidden="true"></i>Hotels</a>
+        <a href="{% url 'cinemahalls' %}"><i class="fa fa-film space" aria-hidden="true"></i>Cinema Halls</a>
+        <a href="{% url 'shoppingcomplex' %}"><i class="fa fa-shopping-cart space" aria-hidden="true"></i>Shopping Malls</a>
         <a href="#"><i class="fa fa-cutlery space" aria-hidden="true"></i>Restaurants</a>
         <a href="#"><i class="fa fa-shopping-bag space" aria-hidden="true"></i>Shops</a>
-        <a href="#"><i class="fa fa-text-width space" aria-hidden="true"></i>Temples</a>
-    </div>
+        <a href="{% url 'show' %}"><i class="fa fa-text-width space" aria-hidden="true"></i>Attractions</a>
+      </div>
 
 <nav class="navbar navbar-light navbar-expand-lg" style="background-color: #3d84a8;">
   <div id="main">
@@ -66,26 +66,25 @@
       <ul class="navbar-nav ml-auto">
 
         <li class="nav-item">
-          <a style="color:white;" class="nav-link" href=""><i style="color:white;" class="fa fa-home space"></i>Home</a>
-        </li>
-  
+          <a class="nav-link" href="{% url 'homepage' %}"><i class="fa fa-home space"></i>Home</a>
+      </li>
+
         <li class="nav-item">
-            <a style="color:white;" class="nav-link" href=""><i style="color:white;" class="fa fa-phone space"></i>Contact</a>
+            <a class="nav-link" href="{% url 'contact' %}"><i class="fa fa-phone space"></i>Contact</a>
         </li>
-        <li class="nav-item"><a style="color:white;" class="nav-link" href="">
-          <i style="color:white;" class="fa fa-question-circle"></i>
+        <li class="nav-item"><a class="nav-link" href="">
+          <i class="fa fa-question-circle"></i>
           Help
         </a></li>
         <li class="nav-item">
-          <a style="color:white;" class="nav-link" href="/">
-            <i style="color:white;" class="fa fa-sign-out"></i>
+          <a class="nav-link" href="/">
+            <i class="fa fa-sign-out"></i>
             Logout
         </a>
-  
-  
+
       </li>
-  
-  
+
+
     </ul>
   
   
@@ -214,21 +213,19 @@
 
 
 
-    <section style="background-color: #3d84a8;" id="footer">
+    
 
-
-
-
+    <section id="footer">
         <center>
             <div class="title-text">
             <h2><b>Thank You For Visiting Our Website <i class="fa fa-smile-o" aria-hidden="true"></i></b></h2>
-            <p>CONTACT</p>
+            
             </div>
         </center>
 
             <div class="footer-row">
                 <div class="footer-left">
-                    <h1>About Us</h1>
+                    <a href="{% url 'aboutus' %}"><h1>About Us</h1><a>
                     <p>Hello, Welcome to 'Search and pick'. </p>
                     <p>We help you to get best services in a particular location you selected</p>
                 </div>
@@ -243,81 +240,6 @@
 
 
     </section>
-
-
-    	
-<h2 style="text-align:center">Our Team</h2>
-<div class="R1">
-  <div class="col1">
-    <div class="card">
-      <img src="https://tse1.mm.bing.net/th?id=OIP.PdnBbUu9bw9qJ1763kZXfgHaHv&pid=Api&P=0&w=300&h=300" alt="Aditya" style="width:30%">
-      <div class="container2">
-        <h2>K Aditya</h2>
-        <p class="title">Project Head</p>
-        <p>S20190010104</p>
-        <p>aditya@example.com</p>
-        <p><button class="but10">Contact</button></p>
-      </div>
-    </div>
-  </div>
-
-  <div class="col1">
-    <div class="card">
-      <img src="https://tse1.mm.bing.net/th?id=OIP.PdnBbUu9bw9qJ1763kZXfgHaHv&pid=Api&P=0&w=300&h=300" alt="Madhesh" style="width:30%">
-      <div class="container2">
-        <h2>M Madhesh</h2>
-        <p class="title">Project Member</p>
-        <p>S20190010114??</p>
-        <p>madhesh@example.com</p>
-        <p><button class="but10">Contact</button></p>
-      </div>
-    </div>
-  </div>
-  
-  <div class="col1">
-    <div class="card">
-      <img src="https://tse4.mm.bing.net/th?id=OIP.53xvIU96J8F6TBBXm1aa7wHaHa&pid=Api&P=0&w=300&h=300" alt="Nishita" style="width:30%">
-      <div class="container2">
-        <h2>U Nishita</h2>
-        <p class="title">Project Member</p>
-        <p>S20190010184</p>
-        <p>nishita.u19@iiits.in</p>
-        <p><button class="but10">Contact</button></p>
-      </div>
-    </div>
-  </div>
-
-
-  <div class="col1">
-    <div class="card">
-      <img src="https://tse4.mm.bing.net/th?id=OIP.53xvIU96J8F6TBBXm1aa7wHaHa&pid=Api&P=0&w=300&h=300" alt="Varshini" style="width:30%">
-      <div class="container2">
-        <h2>K Varshini</h2>
-        <p class="title">Project Member</p>
-        <p>S20190010103</p>
-        <p>venkatasaivarshini.k19@iiits.in</p>
-        <p><button class="but10">Contact</button></p>
-      </div>
-    </div>
-  </div>
-
-
-  <div class="col1">
-    <div class="card">
-      <img src="https://tse4.mm.bing.net/th?id=OIP.53xvIU96J8F6TBBXm1aa7wHaHa&pid=Api&P=0&w=300&h=300" alt="Lilly" style="width:30%">
-      <div class="container2">
-        <h2>Biswas Lilly</h2>
-        <p class="title">Project Member</p>
-        <p>S201900101??</p>
-        <p>lilly@iiits.in</p>
-        <p><button class="but10">Contact</button></p>
-      </div>
-    </div>
-  </div>
-
-
-
-</div>
 
         
 
