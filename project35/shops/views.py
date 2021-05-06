@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse,HttpResponseRedirect
 from shops.models import Shop
 from django.template import loader
@@ -6,6 +6,12 @@ from hotels.models import Place
 from django import forms
 from .filters import ShopFilter
 from authentication.models import User,serviceprovider
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.views.generic import (
+    DetailView,
+    CreateView,
+    UpdateView,
+)
 
 
 class ShopForm(forms.ModelForm):
@@ -23,47 +29,61 @@ class ShopForm(forms.ModelForm):
         'shop_address': "address",
         'shop_contactinfo': "contact",
         'shop_place': "place",
-        'shop_itemtype': "sellingtype"}
+        'shop_itemtype': "sellingtype",
+        }
 
-def addshop(request,user_id):
+class ShopDetailView(DetailView):
+    model=Shop
 
-    # if request.method=="POST":
-    #     shopform=ShopForm(request.POST)
-    #     shopform.shop_owner_id=user_id
-    #     if shopform.is_valid():
-            
-    #         shopform.save()
-    # else:
+
+class ShopUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model=Shop
+    fields=['shop_itemtype','shop_name','shop_address','shop_place','shop_contactinfo']
+
+    def form_valid(self, form):
+        if self.request.user.is_serviceprovider :
+            form.instance.shop_owner = self.request.user
+            return super().form_valid(form)
+        else :
+            return HttpResponse('Users cannot insert the shop')
+
+    def test_func(self):
+        shop =self.get_object()
+        if self.request.user == shop.shop_owner:
+            return True
+        return False
+
+
+def form_view(request,user_id):
+    if request.method == "POST":
+        form=ShopForm(request.POST,request.FILES)
+        k=0
+        places=Place.objects.all()
+        for place in places:
+            if form['shop_place'].value() == place.place_name:
+                k=1
+                obj=place
+                break
+        if k == 0:
+            obj=Place(place_name=form['shop_place'].value())
+            obj.save()
+        shop_owner=User.objects.get(id=user_id)
+        sp = Shop(shop_owner=shop_owner,shop_itemtype=form['shop_itemtype'].value(),shop_name=form['shop_name'].value(),shop_place=obj,shop_address=form['shop_address'].value(),shop_contactinfo=form['shop_contactinfo'].value())
+        sp.save()
+        return render(request,'authentication/Serviceuserhomepage.html')
+    else:
+        if (Shop.objects.filter(shop_owner_id=user_id).first()) is not None:
+            temp = Shop.objects.filter(shop_owner_id=user_id).first()
+            i=temp.id
+            url = '/shops/shop/{}/'.format(i)
+            return redirect(url)
+        
+        else:
+            form= ShopForm()
+            return render(request,'shops/shop_form.html',{'form':form})
+
 
     
-    shop_sp=serviceprovider.objects.get(user_id=user_id)
-    print(shop_sp)
-    if (Shop.objects.filter(shop_owner=shop_sp)) is not None:
-        #shop_sp=serviceprovider.objects.get(user=user)
-        shop_instance=Shop.objects.get(shop_owner=shop_sp)
-        print(shop_instance) 
-        shop_form=ShopForm(instance=shop_instance)
-        if request.method=='POST':
-            shiop_form=ShopForm(request.POST or None,instance=shop_instance)
-            if shop_form.is_valid():
-                shop_obj=shop_form.save()
-                return render(request,"shops/shops.html")
-            else:
-                return render(request, 'shops/shopadding.html', context={'form': shop_form})
-    else:
-        print('else')
-        shop_form=ShopForm(initial={'shop_owner': serviceprovider.objects.get(user_id=user_id)})
-        if request.method=='POST':
-            shop_form=ShopForm(request.POST or None,initial={'shop_owner': serviceprovider.objects.get(user_d=user_id)})
-            if shop_form.is_valid():
-                shopobj=shop_form(commit=False)
-                shopobj.shop_owner=shop_sp
-                shopobj.save()
-                return render(request,'authentication/ServiceuserHompepage.html')
-            else:
-                return render(request,'shops/shopadding.html')
-        else:
-            return render(request,'shops/shopadding.html',{'form': shop_form})
        
             
 
