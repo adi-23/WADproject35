@@ -7,7 +7,7 @@
     <title>ShoppingComplex Form</title>
 </head>
 <body>
-    <form  action="{% url 'shoppingcomplexform' user.pk %}" method="POST" enctype="multipart/form-data">
+    <form method="POST" enctype="multipart/form-data">
             <h1>Add the details of ShoppingComplex</h1>
             {%csrf_token%}
             <table>

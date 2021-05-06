@@ -1,6 +1,6 @@
 from django.db import models
 from hotels.models import Place
-from authentication.models import serviceprovider
+from authentication.models import serviceprovider,User
 # Create your models here.
 class Shop(models.Model):
     
@@ -16,8 +16,8 @@ class Shop(models.Model):
     ]
     shop_itemtype=models.CharField(max_length=20,choices=item_type,default='HN')
 
-    shop_owner=models.ForeignKey(serviceprovider,on_delete=models.CASCADE)
-    
+    shop_owner=models.ForeignKey(User,on_delete=models.CASCADE)
+    shop_image=models.ImageField(upload_to='pics/')
     shop_name=models.CharField(max_length=25)
     shop_address=models.CharField(max_length=100)
     shop_contactinfo=models.CharField(max_length=10)

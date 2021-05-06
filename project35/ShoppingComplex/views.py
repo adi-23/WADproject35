@@ -1,9 +1,17 @@
 from django.shortcuts import render,redirect
+from django.http import HttpResponse
 from hotels.models import Place
-from authentication.models import serviceprovider
+from authentication.models import serviceprovider,User
 from .models import ShoppingComplex
 from .forms import ShoppingComplexForm
 from .filters import ShoppingComplexFilter
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.views.generic import (
+    DetailView,
+    CreateView,
+    UpdateView,
+    DeleteView
+)
 # Create your views here.
 
 
@@ -42,9 +50,8 @@ def ShoppingComplexListview(request,place_id):
     return render(request,'ShoppingComplex/shoppingcomplex_list.html',{'filter': h,'shoppingcomplex': shoppingcomplex_list})
 
 
-
-
 def form_view(request,user_id):
+    
     if request.method == "POST":
         form=ShoppingComplexForm(request.POST,request.FILES)
         k=0
@@ -57,13 +64,41 @@ def form_view(request,user_id):
         if k == 0:
             obj=Place(place_name=form['place'].value())
             obj.save()
-        h_sp=serviceprovider.objects.get(user_id=user_id)
+        h_sp=User.objects.get(id=user_id)
         shopping = ShoppingComplex(shoppingcomplex_sp=h_sp,shoppingcomplex_hasFloors=form['floors'].value(),shoppingcomplex_name=form['name'].value(),shoppingcomplex_image=form['image'].value(),shoppingcomplex_place=obj,shoppingcomplex_address=form['address'].value(),shoppingcomplex_contactinfo=form['Contactinfo'].value())
         shopping.save()
         return render(request,'authentication/Serviceuserhomepage.html')
     else:
-        form= ShoppingComplexForm()
-        return render(request,'ShoppingComplex/form.html',{'form':form})
+        if (ShoppingComplex.objects.filter(shoppingcomplex_sp_id=user_id).first()) is not None:
+            temp = ShoppingComplex.objects.filter(shoppingcomplex_sp_id=user_id).first()
+            i=temp.id
+            url = '/shoppingcomplex/shoppingcomplex/{}/'.format(i)
+            return redirect(url)
+
+        else:
+            form= ShoppingComplexForm()
+            return render(request,'ShoppingComplex/shoppingcomplex_form.html',{'form':form})
+
+class ShoppingComplexDetailView(DetailView):
+    model=ShoppingComplex
+
+
+class ShoppingComplexUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model=ShoppingComplex
+    fields=['shoppingcomplex_name','shoppingcomplex_image','shoppingcomplex_hasFloors','shoppingcomplex_address','shoppingcomplex_place','shoppingcomplex_contactinfo']
+
+    def form_valid(self, form):
+        if self.request.user.is_serviceprovider :
+            form.instance.shoppingcomplex_sp = self.request.user
+            return super().form_valid(form)
+        else :
+            return HttpResponse('Users cannot insert the shopping malls')
+
+    def test_func(self):
+        shoppingcomplex =self.get_object()
+        if self.request.user == shoppingcomplex.shoppingcomplex_sp:
+            return True
+        return False
 
 
 def shoppingcomplex(request):

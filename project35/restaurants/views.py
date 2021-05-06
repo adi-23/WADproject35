@@ -1,5 +1,5 @@
 from django.shortcuts import render,HttpResponse
-from .models import Restaurant,Menu
+from .models import Restaurant
 from hotels.models import Place
 from authentication.models import serviceprovider
 from django import forms
@@ -32,18 +32,6 @@ class RestaurantForm(forms.ModelForm):
                 'resta_place':"Place"
         }
         
-
-class MenuForm(forms.ModelForm):
-        
-        class Meta:
-                model=Menu
-                fields=["fooditem_name","food_type","food_cost"]
-                label={
-                        'fooditem_name':"Enter food item nane",
-                        'food_type':"Select item type",
-                        'food_cost':"Enter food price"
-                }
-
 
 # class RestaurantFormView(FormView):
 #     template_name = 'restaurants/restaurantadd.html'
