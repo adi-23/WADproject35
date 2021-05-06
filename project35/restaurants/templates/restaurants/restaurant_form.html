@@ -15,7 +15,7 @@
     <div>
    
         
-            <form class="box container" action="{% url 'restaurant_form' user.pk%}" method="POST">
+            <form class="box container"  method="POST" enctype="multipart/form-data">
                 <h1>Add Your Restaurant Details</h1>
                 {% csrf_token %}
                 <table>

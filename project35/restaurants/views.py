@@ -1,11 +1,39 @@
-from django.shortcuts import render,HttpResponse
+from django.shortcuts import render,HttpResponse,redirect
 from .models import Restaurant
 from hotels.models import Place
-from authentication.models import serviceprovider
+from authentication.models import serviceprovider,User
 from django import forms
 from django.views.generic.edit import FormView
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.views.generic import (
+    DetailView,
+    CreateView,
+    UpdateView,
+)
+
 
 # Create your views here.
+class RestaurantDetailView(DetailView):
+    model=Restaurant
+
+
+class RestaurantUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model=Restaurant
+    fields=['resta_name','has_AC','has_delivery','has_parking','restaurant_type','resta_contact','resta_place','resta_address']
+
+    def form_valid(self, form):
+        if self.request.user.is_serviceprovider :
+            form.instance.resta_owner= self.request.user
+            return super().form_valid(form)
+        else :
+            return HttpResponse('Users cannot insert the restaurant')
+
+    def test_func(self):
+        restauarnt =self.get_object()
+        if self.request.user == restauarnt.resta_owner:
+            return True
+        return False
+
 
 class RestaurantForm(forms.ModelForm):
     
@@ -46,7 +74,7 @@ class RestaurantForm(forms.ModelForm):
 
 
 
-def restaurant_form(request,user_id):
+def resta_view(request,user_id):
          if request.method=="POST":
                 form=RestaurantForm(request.POST)
 
@@ -62,8 +90,8 @@ def restaurant_form(request,user_id):
                     obj.save()
 
 
-                User=serviceprovider.objects.get(user_id=user_id)
-                restaObj=Restaurant(resta_owner=User,
+                user=User.objects.get(id=user_id)
+                restaObj=Restaurant(resta_owner=user,
                                     resta_name=form['resta_name'].value(),
                                     has_AC=form['has_AC'].value(),
                                     has_delivery=form['has_delivery'].value(),
@@ -73,21 +101,21 @@ def restaurant_form(request,user_id):
                                     restaurant_type=form['restaurant_type'].value(),
                                     resta_contact=form['resta_contact'].value())
                 restaObj.save()
-                return render(request,"restaurents/menuadd.html",context={'restaurant': restaObj})
+                return render(request,"hotels/redir.html",context={'restaurant': restaObj})
 
 
          else:
-            form =RestaurantForm()
-            return  render(request,'restaurants/restaurantadd.html', {"form": form})
+            if (Restaurant.objects.filter(resta_owner_id=user_id).first()) is not None:
+                temp = Restaurant.objects.filter(resta_owner_id=user_id).first()
+                i=temp.id
+                url = '/restaurants/restaurant/{}/'.format(i)
+                return redirect(url)
+        
+            else:
+                form= RestaurantForm()
+                return render(request,'restaurants/restaurant_form.html',{'form':form})
 
-def menuadd(request,resta_id):
-    
-    if request.method=='POST':
-        restaurant=Restaurant.objects.get(id=resta_id)
-        m_form=MenuForm(request.POST)
-        menuobj=Menu(restaurant=restaurant,fooditem_name=m_form['fooditem_name'].value(),food_type=m_form['food_type']).value()
-        menuobj.save()        
-        return 
+
             
         
 

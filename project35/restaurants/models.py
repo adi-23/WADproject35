@@ -2,6 +2,7 @@
 from django.db import models
 from authentication.models import serviceprovider,User 
 from hotels.models import Place
+from django.urls import reverse
 
 
 
@@ -16,8 +17,9 @@ class Restaurant(models.Model):
    restaurant_type=models.CharField(max_length=10,choices=Veg_Nonveg,default='V and NV')
    resta_owner=models.ForeignKey(User,on_delete=models.CASCADE)    
    resta_place=models.ForeignKey(Place,on_delete=models.CASCADE)
-   resta_image=models.ImageField(upload_to='pics/')
-
+   
+   def get_absolute_url(self):
+         return reverse("restaurant_detail", kwargs={"pk": self.pk})
    
 def _str_(self):
    return self.resta_name

@@ -1,9 +1,13 @@
 from django.urls import path
 from . import views
+from .views import RestaurantDetailView,RestaurantUpdateView
 
 urlpatterns=[
-     path('addrestaurent/<int:user_id>',views.restaurant_form,name="restaurant_form"),
+    
      path('aboutus/',views.aboutus,name='aboutus'),
-path('contact/',views.contact,name='contact'),
-path('home',views.homepage,name='homepage'),
+     path('contact/',views.contact,name='contact'),
+     path('home',views.homepage,name='homepage'),
+     path('restaurant/<int:pk>/',RestaurantDetailView.as_view(),name="restaurant_detail"),
+    path('restaurant/<int:pk>/update/',RestaurantUpdateView.as_view(),name="restaurant_update"),
+    path('restaurant/<int:user_id>/new',views.resta_view,name="restaurant_form"),
 ]
