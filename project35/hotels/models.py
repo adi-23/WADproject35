@@ -1,5 +1,6 @@
 from django.db import models
 from authentication.models import serviceprovider,User
+from django.urls import reverse
 # Create your models here.
 class Place(models.Model):
     place_name=models.CharField(max_length=30,unique=True)
@@ -15,3 +16,5 @@ class Hotel(models.Model):
     hotel_contactinfo   =models.CharField(max_length=10)
     hotel_img           =models.ImageField(upload_to='pics/')
     
+    def get_absolute_url(self):
+         return reverse("hotel_detail", kwargs={"pk": self.pk})

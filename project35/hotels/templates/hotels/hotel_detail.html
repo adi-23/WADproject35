@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hote Detail</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <img class="img-circle" src="{{object.hotel_img.url}}" width= 45% height= 250px style="vertical-align:top;max-width:100%">
+    <h3> Name: {{object.hotel_name}}</h3>
+        <p>Address: {{object.hotel_address}}</p>
+        {% if object.hotel_hasACrooms %}
+        <p>
+          Hotel has AC rooms
+        </p>
+        {% else %}
+        <p>
+          Hotel has NON-AC rooms
+        </p>
+        {% endif %}
+        <p>Place: {{object.hotel_place.place_name}} </p>
+        <p>Contact NO: {{object.hotel_contactinfo}}</p>
+
+
+    <a href="{% url 'hotel_update' object.id %}"><button type="button" class="btn btn-success">Update</button></a>
+
+</body>
+</html>
