@@ -1,11 +1,42 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
+from django.http import HttpResponse
 from .form import HospitalForm
 from hotels.models import Place
 from .models import Hospital
-from authentication.models import serviceprovider
+from authentication.models import serviceprovider,User
 from .filters import HospitalFilter
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.views.generic import (
+    DetailView,
+    CreateView,
+    UpdateView,
+)
 
 # Create your views here.
+
+class HospitalDetailView(DetailView):
+    model=Hospital
+
+
+class HospitalUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model=Hospital
+    fields=['hospital_name','hospital_image','doctors','hospital_address','hospital_place','hospital_contactinfo']
+
+    def form_valid(self, form):
+        if self.request.user.is_serviceprovider :
+            form.instance.hospital_sp = self.request.user
+            return super().form_valid(form)
+        else :
+            return HttpResponse('Users cannot insert the hospitals')
+
+    def test_func(self):
+        hospital =self.get_object()
+        if self.request.user == hospital.hospital_sp:
+            return True
+        return False
+
+
+
 
 def search(request):
     result=request.GET['places']
@@ -42,13 +73,20 @@ def form_view(request,user_id):
         if k == 0:
             obj=Place(place_name=form['hospitalPlace'].value())
             obj.save()
-        h_sp=serviceprovider.objects.get(user_id=user_id)
+        h_sp=User.objects.get(id=user_id)
         hospital = Hospital(hospital_sp=h_sp,doctors=form['doctors'].value(),hospital_name=form['hospitalName'].value(),hospital_image=form['hospitalImage'].value(),hospital_place=obj,hospital_address=form['hospitalAddress'].value(),hospital_contactinfo=form['hospitalContactinfo'].value())
         hospital.save()
         return render(request,'authentication/Serviceuserhomepage.html')
     else:
-        form= HospitalForm()
-        return render(request,'hospitals/form.html',{'form':form})
+        if (Hospital.objects.filter(hospital_sp_id=user_id).first()) is not None:
+            temp = Hospital.objects.filter(hospital_sp_id=user_id).first()
+            i=temp.id
+            url = '/hospitals/hospital/{}/'.format(i)
+            return redirect(url)
+        
+        else:
+            form= HospitalForm()
+            return render(request,'hospitals/hospital_form.html',{'form':form})
 
 
 def hospitals(request):

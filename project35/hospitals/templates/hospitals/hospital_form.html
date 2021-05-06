@@ -11,7 +11,7 @@
 </head>
 <body class="background">
     <div class="form">
-        <form class="box container" action="{% url 'hospitalsform' user.pk %}" method="POST" enctype="multipart/form-data">
+        <form class="box container"  method="POST" enctype="multipart/form-data">
             <h1>Add the details of hospital</h1>
             {%csrf_token%}
             <table>
