@@ -15,7 +15,7 @@
     <div >
    
         
-            <form class="box container" action="{% url 'form' user.pk%}" method="POST">
+            <form class="box container" enctype="multipart/form-data" method="POST">
                 <h1>Add Your Cinema Hall Details</h1>
                 {% csrf_token %}
                 <table>
