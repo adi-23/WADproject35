@@ -91,8 +91,9 @@ def select(request):
     cinemahalls_info= CinemaHall.objects.filter(cinemahall_place=iid)
     context={'cinemahallsinfo': cinemahalls_info, }
     return render(request,"CinemaHalls/cinemahalls.html",{
-    'Place':Place.objects.all(),
-    'CinemaHalls':cinemahalls_info
+    'Place': Place.objects.all(),
+    'CinemaHalls':cinemahalls_info,
+    'place_id': iid
 
     })
 

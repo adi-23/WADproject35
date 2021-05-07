@@ -99,10 +99,10 @@
       <br>
       <br>
 
+  {% if not Place %}
+  
 
-
-
-
+  {% endif %}
 
 
   <br>
@@ -115,13 +115,17 @@
   <br>
 
     <br>
+    <a href="{% url 'cinemahallfilter' place_id %}"><i style="font-size:65px;float:right;margin:" class="fa fa-filter" aria-hidden="true"></i></a>
 
+    <br>
+    <br>
     <br>
 
 {% if not CinemaHalls %}
   <h3 style="text-align:center;">There are no Cinemahalls in that place</h3>
 
 {% else %}
+
   {% for cinemahalls in CinemaHalls %}
     <center>
       <div class="responsive">
@@ -136,7 +140,7 @@
               <p>Number of Seats: {{cinemahalls.seats}}</p>
               <p>Timings: {{cinemahalls.timing}}</p>
               <p>Movie : {{cinemahalls.current_movie}}</p>
-              <p>Place: {{cinemahalls.cinemahall_place.place_name}} </p>
+              <p>Place: {{cinemahalls.cinemahall_place.place_name}}</p>
               <p>Contact NO: {{cinemahalls.cinemahall_contactinfo}}</p>
             </div>
           </div>
