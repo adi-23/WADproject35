@@ -118,6 +118,31 @@ def resta_view(request,user_id):
 
             
         
+def restaurant(request):
+    places=Place.objects.all()
+    return render(request,'restaurants/rest1.html',{'Place':places})
+
+
+
+
+def search(request):
+    result=request.GET['places']
+    iid=0
+    for place in Place.objects.all():
+        if place.place_name==result:
+
+            iid=place.id
+            break
+
+    rest_info= Restaurant.objects.filter(resta_place_id=iid)
+    p = Place.objects.filter(id=iid)
+    context={'restinfo': rest_info, }
+    return render(request,"restaurants/rest1.html",{
+    'Place':Place.objects.all(),
+    'Restaurants':rest_info,'place':p
+
+    })
+
 
 def aboutus(request):
     return render(request,"Visitplace/AboutUs.html")

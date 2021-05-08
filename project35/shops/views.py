@@ -83,7 +83,27 @@ def form_view(request,user_id):
             return render(request,'shops/shop_form.html',{'form':form})
 
 
-    
+def search(request):
+    result=request.GET['places']
+    iid=0
+    for place in Place.objects.all():
+        if place.place_name==result:
+
+            iid=place.id
+            break
+
+    shop_info= Shop.objects.filter(shop_place_id=iid)
+    p = Place.objects.filter(id=iid)
+    context={'shopinfo': shop_info, }
+    return render(request,"shops/shops.html",{
+    'Place':Place.objects.all(),
+    'shops':shop_info,'place':p
+
+    })  
+
+def shopcomplex(request):
+    places=Place.objects.all()
+    return render(request,'shops/shops.html',{'Place':places})
        
             
 

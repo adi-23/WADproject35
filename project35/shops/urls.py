@@ -4,6 +4,8 @@ from .views import ShopDetailView,ShopUpdateView
 
 urlpatterns = [
      path('<int:place_id>',views.shops,name='shopsfilter'),
+     path('search/',views.search,name="shopsSearch"),
+     path('shops/',views.shopcomplex,name="shopDet"),
      
     
     path('editshop/<int:user_id>',views.editshops,name="editshops"),
