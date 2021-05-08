@@ -1,5 +1,6 @@
 {%load static%}
 
+{% load crispy_forms_tags %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,45 +8,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CinemaHalls</title>
-    <link rel="stylesheet" href="{% static 'CinemaHalls/css/halls.css'%}">
-   
+    
+    <title>RestaurantForm</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    
 </head>
-<body class="background">
+<body >
     <div>
-   
-        
-            <form class="box container"  method="POST" enctype="multipart/form-data">
-                <h1>Add Your Restaurant Details</h1>
-                {% csrf_token %}
-                <table>
-                <div class="row">
-                    <div class="col-75">
-                        {{ form.as_table }}
-                    </div>
-                </div>
-                </table>
-                
-                
-                
-                
-                
-
-                <center>
-                <input  type="submit" class="btnbtn-primary" value="submit">
-                </center>
-                
-            </form>
-            
-
-            {% if messages%}
-                {% for message in messages %}
-                    <span style="color:red">{{ message }}</span
-                {% endfor %}
-            {% endif %}
-        
+        <form class="container" method="POST" enctype="multipart/form-data">
+            <h1>Add the details of Restaurant</h1>
+            {%csrf_token%}
+            <table>
+                {{form|crispy}}
+            </table>
+            <input type="submit" value="Submit">
+        </form>
     </div>
-    
-    
+
 </body>
 </html>

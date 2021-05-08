@@ -1,21 +1,26 @@
 {%load static%}
 
+{% load crispy_forms_tags %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'hospitals/css/form.css' %}">
+    
     <title>HospitalForm</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    
 </head>
-<body class="background">
-    <div class="form">
-        <form class="box container"  method="POST" enctype="multipart/form-data">
+<body >
+    <div>
+        <form class="container" method="POST" enctype="multipart/form-data">
             <h1>Add the details of hospital</h1>
             {%csrf_token%}
             <table>
-                {{form.as_table}}
+                {{form|crispy}}
             </table>
             <input type="submit" value="Submit">
         </form>
