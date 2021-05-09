@@ -39,9 +39,9 @@ def login_request(request):
             if user is not None :
                 login(request,user)
                 if user.is_serviceprovider:
-                        return render(request,'authentication/userHomepage.html',context={'user': request.user})
+                        return redirect('../serviceproviderhome/')
                 else:
-                    return render(request,'authentication/Serviceuserhomepage.html',context={'username': username})
+                    return redirect('../userhome/')
             else:
                 messages.error(request,"Invalid username or password")
         else:
@@ -57,6 +57,8 @@ def logout_view(request):
 def home(request):
      render(request,'travel/home.html')
 
+def serviceproviderhome(request):
+    return render(request,'authentication/userHomepage.html',context={'user': request.user})
 
-# def login(request):
-#     return render(request,'authentication/login.html')
+def userhome(request):
+    return render(request,'authentication/Serviceuserhomepage.html',context={'username': request.user.username})

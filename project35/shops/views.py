@@ -9,7 +9,6 @@ from authentication.models import User,serviceprovider
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import (
     DetailView,
-    CreateView,
     UpdateView,
 )
 

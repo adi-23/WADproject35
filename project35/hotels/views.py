@@ -11,7 +11,6 @@ from .filters import HotelFilter
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import (
     DetailView,
-    CreateView,
     UpdateView,
 )
 
