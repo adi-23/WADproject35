@@ -3,13 +3,13 @@ from django import forms
 from django.db import transaction
 from .models import User,serviceprovider,serviceuser
 
-class ServiceUserSignUpForm(UserCreationForm):
+class ServiceUserSignUpForm(UserCreationForm):  #class based form for creation of user(serviceuser) in registration
     Email = forms.EmailField(required=True)
 
     class Meta(UserCreationForm.Meta):
         model = User
     
-    @transaction.atomic
+    @transaction.atomic  #if all fields are correct then create the user else stop the creation of user(i.e atomic)
     def save(self):
         user = super().save(commit=False)
         user.is_serviceuser = True
@@ -21,13 +21,13 @@ class ServiceUserSignUpForm(UserCreationForm):
         return user
 
 
-class ServiceProviderSignUpForm(UserCreationForm):
+class ServiceProviderSignUpForm(UserCreationForm):      #class based form for creation of user(serviceprovider) in registration
 
 
     class Meta(UserCreationForm.Meta):
         model = User
-    
-    @transaction.atomic
+                                 
+    @transaction.atomic  #if all fields are correct then create the user else stop the creation of user(i.e atomic)
     def save(self):
         user = super().save(commit=False)
         user.is_serviceprovider = True

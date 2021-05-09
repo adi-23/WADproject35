@@ -1,13 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
-# Create your models here.
+#Abstract user is the module in django for creating multiple users in the appication
 
 class User(AbstractUser):
     is_serviceuser = models.BooleanField(default=False)
     is_serviceprovider = models.BooleanField(default=False)
-    # first_name = models.CharField(max_length=100)
-    # last_name = models.CharField(max_length=100)
 
 class serviceuser(models.Model):
     user = models.OneToOneField(User, on_delete = models.CASCADE, primary_key = True)
@@ -15,6 +13,6 @@ class serviceuser(models.Model):
 
 class serviceprovider(models.Model):
     user = models.OneToOneField(User, on_delete = models.CASCADE, primary_key = True)
-    #choice = models.CharField(max_length=20)
+    
     def __str__(self):
         return str(self.user)

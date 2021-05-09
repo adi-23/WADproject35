@@ -30,11 +30,12 @@ class serviceprovider_register(CreateView):
 
 def login_request(request):
     if request.method=='POST':
+        #if method is POST the data sent through form
         form = AuthenticationForm(data=request.POST)
         if form.is_valid():
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
-            user = authenticate(username=username, password=password)
+            user = authenticate(username=username, password=password) #user is authenticated
             if user is not None :
                 login(request,user)
                 if user.is_serviceprovider:
@@ -48,7 +49,7 @@ def login_request(request):
     return render(request, 'authentication/login.html',
     context={'form':AuthenticationForm()})
 
-
+# view for logout (if user clicks logout redirects to homepage)
 def logout_view(request):
     logout(request)
     return redirect('/')

@@ -22,7 +22,7 @@ class HospitalUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model=Hospital
     fields=['hospital_name','hospital_image','doctors','hospital_address','hospital_place','hospital_contactinfo']
 
-    def form_valid(self, form):
+    def form_valid(self, form): 
         if self.request.user.is_serviceprovider :
             form.instance.hospital_sp = self.request.user
             return super().form_valid(form)
@@ -39,7 +39,7 @@ class HospitalUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 
 def search(request):
-    result=request.GET['places']
+    result=request.GET['places'] 
     iid=0
     for place in Place.objects.all():
         if place.place_name==result:
@@ -96,13 +96,6 @@ def hospitals(request):
 
 
 def HospitalListview(request,place_id):
-    # model=Hotel
-    # template_name='hotels/hotel_list.html'
-
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     context['filter'] = HotelFilter(self.request.GET, queryset=self.get_queryset())
-    #     return context
     
     place=Place.objects.get(id=place_id)
     hospital_list=Hospital.objects.filter(hospital_place=place)
