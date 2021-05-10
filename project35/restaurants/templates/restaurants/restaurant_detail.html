@@ -11,19 +11,55 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
+  <br>
+  <br>
+  <div style="background-color: #3d84a8;">
+    <span style="color: white;" class="navbar-brand mb-0 h1">Search & Pick services</span>
+ </div>
+<br><br>
+  <center>
     <img class="img-circle" src="{{object.resta_img.url}}" width= 45% height= 250px style="vertical-align:top;max-width:50%">
-    <h3> Name: {{object.resta_name}}</h3>
-    <p>Address: {{object.resta_address}}</p>
-    <p> AC/NON-AC: {{object.has_AC}}</p>
-    <p>Delivery option: {{object.has_delivery}} </p>
-    <p>Contact NO: {{object.resta_contact}}</p>
-    <p>Parking: {{object.has_parking}}</p>
-    <p>Place: {{object.resta_place}}</p>
-    <p>
-        Type: {{object.restaurant_type}}
-    </p>
+    <br>
+    <br>
+    <div  style="font-size:medium " class="container">
+      
+    <table class="table">
+      <tr>
+        <td> <strong>Name: </strong> {{object.resta_name}}</td>
+      </tr>
+      <tr>
+        <td><strong>Address:</strong> {{object.resta_address}}</td>
+      </tr>
+      <tr>
+        <td> <strong>AC/NON-AC:</strong> {{object.has_AC}}</td>
+      </tr>
+      <tr>
+      </tr>
+      <tr>
+        <td><strong>Delivery option:</strong> {{object.has_delivery}} </td>
+      </tr>
+      <tr>
+        <td><strong>Contact NO:</strong> {{object.resta_contact}}</td>
+      </tr>
+      <tr>
+        <td><strong>Parking:</strong> {{object.has_parking}}</td>
+      </tr>
+      <tr>
+        <td><strong>Place:</strong> {{object.resta_place}}</td>
+        </tr>
+        <tr>
+        <td>
+            <strong>Type:</strong> {{object.restaurant_type}}
+        </td>
+        </tr>
+        <tr>
+        <td>
+            <a href="{% url 'restaurant_update' object.id %}"><button type="button" class="btn btn-success">Update</button></a>
+        </td>
+        </tr>
 
-        <a href="{% url 'restaurant_update' object.id %}"><button type="button" class="btn btn-success">Update</button></a>
-
+</table>
+</div>
+</center>
 </body>
 </html>

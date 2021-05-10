@@ -1,3 +1,6 @@
+{% load static%}
+{% load bootstrap %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,14 +14,42 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
+  <br>
+  <br>
+  <div style="background-color: #3d84a8;">
+    <span style="color: white;" class="navbar-brand mb-0 h1">Search & Pick services</span>
+ </div>
+<br><br>
+<center>
     <img class="img-circle" src="{{object.shop_image.url}}" style="vertical-align:top;max-width:100%">
-    <h3> Name: {{object.shop_name}}</h3>
-    <p>Address: {{object.shop_address}}</p>
-    <p> Itemtype: {{object.shop_itemtype}}</p>
-    <p>Place: {{object.shop_place.place_name}} </p>
-    <p>Contact NO: {{object.shop_contactinfo}}</p>
+    <br>
+    <br>    
+    <div  style="font-size:medium " class="container">
 
-        <a href="{% url 'shop_update' object.id %}"><button type="button" class="btn btn-success">Update</button></a>
+    <table class="table">
+       <tr>
+      <td> <strong>Name:</strong> {{object.shop_name}}</td>
+      </tr>
+      <tr>
+      <td> <strong>Address:</strong> {{object.shop_address}}</td>
+      </tr>
+      <tr>
+      <td>  <strong>Itemtype:</strong> {{object.shop_itemtype}}</td>
+      </tr>
+      <tr>
+      <td> <strong>Place:</strong> {{object.shop_place.place_name}} </td>
+      </tr>
+      <tr>
+      <td> <strong>Contact NO:</strong> {{object.shop_contactinfo}}</td>
+      </tr>
+      <tr>
+        <td>
+            <a href="{% url 'shop_update' object.id %}"><button type="button" class="btn btn-success">Update</button></a>
+        </td>
+      </tr>
+    </table>
+    </div>
 
+</center>
 </body>
 </html>

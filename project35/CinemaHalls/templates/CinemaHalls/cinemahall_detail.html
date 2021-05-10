@@ -11,16 +11,51 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
+  <br>
+  <br>
+  <div style="background-color: #3d84a8;">
+    <span style="color: white;" class="navbar-brand mb-0 h1">Search & Pick services</span>
+ </div>
+<br><br>
+  <center>
     <img src="{{object.cinemahall_image.url}}" class="img-circle" width=50%>
-    <h2>{{ object.cinemahall_name}}</h2>
-    <p>{{object.cinemahall_address}}</p>
-    <p>{{object.seats}}</p>
-    <p>{{object.timing}}</p>
-    <p>{{object.current_movie}}</p>
-    <p>{{object.cinemahall_place.place_name}}</p>
-    <p>{{object.cinemahall_contactinfo}}</p>
+    <br>
+    <br>
+    <div  style="font-size:medium " class="container">
+      
+    <table class="table">
+      <tr>
+        <td><strong>Name:</strong> {{ object.cinemahall_name}}</td>
+      </tr>
+      <tr>
+        <td><strong>Address:</strong> {{object.cinemahall_address}}</td>
+      </tr>
+      <tr>
+        <td><strong>Seats:</strong> {{object.seats}}</td>
+      </tr>
+      <tr>
+        <td><strong>Timings of movie : </strong> {{object.timing}}</td>
+      </tr>
+      <tr>
+        <td><strong>Current movie:</strong> {{object.current_movie}}</td>
+      </tr>
+      <tr>
+        <td><strong>Place:</strong> {{object.cinemahall_place.place_name}}</td>
+      </tr>
+      <tr>
+        <td><strong>Contact info:</strong> {{object.cinemahall_contactinfo}}</td>
+    </tr>
     
-
+    <tr>
+    <td>
     <a href="{% url 'cinemahall_update' object.id %}"><button type="button" class="btn btn-success">Update</button></a>
+    </td>
+      </tr>
+        
+        </table>
+    </div>
+
+    
+  </center>
 </body>
 </html>

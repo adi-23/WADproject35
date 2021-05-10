@@ -22,13 +22,14 @@ class ShopForm(forms.ModelForm):
     # shopplace=forms.Charfield(label='shopplace',max_length=30)
     class Meta:
         model=Shop
-        fields=["shop_owner","shop_name","shop_address","shop_contactinfo","shop_place","shop_itemtype"]
+        fields=["shop_owner","shop_name","shop_image","shop_address","shop_contactinfo","shop_place","shop_itemtype"]
         labels={'shop_owner': "enter your username",
         'shop_name': "enter shopname",
         'shop_address': "address",
         'shop_contactinfo': "contact",
         'shop_place': "place",
         'shop_itemtype': "sellingtype",
+        'shop_image' : "Upload shop photo",
         }
 
 class ShopDetailView(DetailView):
@@ -37,7 +38,7 @@ class ShopDetailView(DetailView):
 
 class ShopUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model=Shop
-    fields=['shop_itemtype','shop_name','shop_address','shop_place','shop_contactinfo']
+    fields=['shop_itemtype','shop_image','shop_name','shop_address','shop_place','shop_contactinfo']
 
     def form_valid(self, form):
         if self.request.user.is_serviceprovider :
@@ -67,7 +68,7 @@ def form_view(request,user_id):
             obj=Place(place_name=form['shop_place'].value())
             obj.save()
         shop_owner=User.objects.get(id=user_id)
-        sp = Shop(shop_owner=shop_owner,shop_itemtype=form['shop_itemtype'].value(),shop_name=form['shop_name'].value(),shop_place=obj,shop_address=form['shop_address'].value(),shop_contactinfo=form['shop_contactinfo'].value())
+        sp = Shop(shop_image=form['shop_image'].value(),shop_owner=shop_owner,shop_itemtype=form['shop_itemtype'].value(),shop_name=form['shop_name'].value(),shop_place=obj,shop_address=form['shop_address'].value(),shop_contactinfo=form['shop_contactinfo'].value())
         sp.save()
         return render(request,'authentication/Serviceuserhomepage.html')
     else:

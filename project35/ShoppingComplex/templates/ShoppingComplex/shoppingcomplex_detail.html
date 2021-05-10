@@ -11,13 +11,41 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
+<br>
+  <br>
+  <div style="background-color: #3d84a8;">
+    <span style="color: white;" class="navbar-brand mb-0 h1">Search & Pick services</span>
+ </div>
+<br><br>
+  <center>
     <img src="{{object.shoppingcomplex_image.url}}" class="img-circle" width=50%>
-    <h2>{{ object.shoppingcomplex_name}}</h2>
-    <p>{{object.shoppingcomplex_address}}</p>
-    <p>{{object.shoppingcomplex_hasFloors}}</p>
-    <p>{{object.shoppingcomplex_place.place_name}}</p>
-    <p>{{object.shoppingcomplex_contactinfo}}</p>
-
+     <br>
+    <br>
+    <div  style="font-size:medium " class="container">
+      
+    <table class="table">
+    <tr>
+        <td><strong>Name:</strong> {{ object.shoppingcomplex_name}}</td>
+      </tr>
+      <tr>
+        <td><strong>Address:</strong> {{object.shoppingcomplex_address}}</td>
+      </tr>
+      <tr>
+        <td><strong>No.of Floors:</strong> {{object.shoppingcomplex_hasFloors}}</td>
+      </tr>
+      <tr> 
+        <td><strong>Place:</strong> {{object.shoppingcomplex_place.place_name}}</td>
+      </tr>
+      <tr>
+        <td><strong>Contact info : </strong> {{object.shoppingcomplex_contactinfo}}</td>
+    </tr>
+    <tr>
+    <td>
     <a href="{% url 'shoppingcomplex_update' object.id %}"><button type="button" class="btn btn-success">Update</button></a>
+    </td>
+    </tr>
+</table>
+</div>
+</center>
 </body>
 </html>
