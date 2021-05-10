@@ -17,6 +17,8 @@ class Restaurant(models.Model):
    restaurant_type=models.CharField(max_length=10,choices=Veg_Nonveg,default='V and NV')
    resta_owner=models.ForeignKey(User,on_delete=models.CASCADE)    
    resta_place=models.ForeignKey(Place,on_delete=models.CASCADE)
+   resta_img = models.ImageField(upload_to='pics/')
+   
    
    def get_absolute_url(self):
          return reverse("restaurant_detail", kwargs={"pk": self.pk})

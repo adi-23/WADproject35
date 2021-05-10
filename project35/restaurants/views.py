@@ -19,7 +19,7 @@ class RestaurantDetailView(DetailView):
 
 class RestaurantUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model=Restaurant
-    fields=['resta_name','has_AC','has_delivery','has_parking','restaurant_type','resta_contact','resta_place','resta_address']
+    fields=['resta_name','has_AC','has_delivery','has_parking','restaurant_type','resta_img','resta_contact','resta_place','resta_address']
 
     def form_valid(self, form):
         if self.request.user.is_serviceprovider :
@@ -44,7 +44,7 @@ class RestaurantForm(forms.ModelForm):
                 "has_delivery",
                 "has_parking",
                 "resta_contact",
-                #"resta_owner",
+                "resta_img",
                 "restaurant_type",
                 "resta_address",
                 "resta_place"]
@@ -54,7 +54,7 @@ class RestaurantForm(forms.ModelForm):
                 'has_delivery':"Delivery",
                 'has_parking':"Parking",
                 'resta_contact':"Contact number",
-                #'resta_owner':"",
+                'resta_img':"restaurant image",
                 'restaurant_type':"Veg,NonVeg,Both",
                 'resta_address':"Address",
                 'resta_place':"Place"
@@ -66,7 +66,7 @@ class RestaurantForm(forms.ModelForm):
 
 def resta_view(request,user_id):
          if request.method=="POST":
-                form=RestaurantForm(request.POST)
+                form=RestaurantForm(request.POST,request.FILES)
 
                 k=0
 
@@ -88,6 +88,7 @@ def resta_view(request,user_id):
                                     has_parking=form['has_parking'].value(),
                                     resta_address=form['resta_address'].value(),
                                     resta_place=obj,
+                                    resta_img=form['resta_img'].value(),
                                     restaurant_type=form['restaurant_type'].value(),
                                     resta_contact=form['resta_contact'].value())
                 restaObj.save()
