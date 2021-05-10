@@ -7,6 +7,7 @@ urlpatterns=[
      path('aboutus/',views.aboutus,name='aboutus'),
      path('contact/',views.contact,name='contact'),
      path('home',views.homepage,name='homepage'),
+     path('restaurantfilter/',views.RestaurantListview,name="restaurantfilter"),
      path('restaurant/',views.restaurant,name="restaurant"),
      path('search/',views.search,name="restsearch"),
      path('restaurant/<int:pk>/',RestaurantDetailView.as_view(),name="restaurant_detail"),

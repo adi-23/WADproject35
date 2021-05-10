@@ -3,6 +3,7 @@ from .models import Restaurant
 from hotels.models import Place
 from authentication.models import serviceprovider,User
 from django import forms
+from .filters import RestaurantFilter
 from django.views.generic.edit import FormView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import (
@@ -59,16 +60,6 @@ class RestaurantForm(forms.ModelForm):
                 'resta_place':"Place"
         }
         
-
-# class RestaurantFormView(FormView):
-#     template_name = 'restaurants/restaurantadd.html'
-#     form_class = RestaurantForm
-#     #success_url = '/thanks/'
-#     def form_valid(self, form):
-#         # This method is called when valid form data has been POSTed.
-#         # It should return an HttpResponse.
-#         form.save()
-#         return super().form_valid(form)
 
 
 
@@ -138,9 +129,20 @@ def search(request):
     context={'restinfo': rest_info, }
     return render(request,"restaurants/rest1.html",{
     'Place':Place.objects.all(),
-    'Restaurants':rest_info,'place':p
+    'Restaurants':rest_info,'place_id': iid
 
     })
+
+
+
+
+def RestaurantListview(request,place_id):
+    
+    place=Place.objects.get(id=place_id)
+    h_list=Restaurant.objects.filter(hotel_place=place)
+    h = RestaurantFilter(request.GET,queryset=h_list)
+
+    return render(request,'restaurants/restaurant_list.html',{'filter': h,'restaurants': h_list})
 
 
 def aboutus(request):

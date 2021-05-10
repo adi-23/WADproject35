@@ -1,0 +1,68 @@
+
+{% load bootstrap %}
+<div class="container">
+    
+    <form method="GET">
+    {{ filter.form }}
+    <button type="submit" class="btn btn-secondary"> Search </button>
+    </form>
+
+
+
+</div>
+<ul>
+    {% for rest in filter.qs %}
+
+    <center>
+        <div class="responsive">
+                <div class="polaroid">
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <img src="" width= 45% height= 250px style="vertical-align:top;max-width:100%">
+                    </div>
+                    <div class="container col-sm-6">
+
+                        <h3>{{rest.resta_name}}</h3>
+                        {% if rest.has_AC %}
+                      <p>
+                         AC restaurant
+                      </p>
+                      {% else %}
+                      <p>
+                        NON-AC restaurant
+                      </p>
+                      {% endif %}  
+                        
+                      {% if rest.has_delivery %}
+                      <p>
+                         Delivery option available
+                      </p>
+                      {% else %}
+                      <p>
+                        No delivery service
+                      </p>
+                      {% endif %}  
+                      {% if rest.has_parking %}
+                      <p>
+                         Parking available
+                      </p>
+                      {% else %}
+                      <p>
+                        Parking not available
+                      </p>
+                      {% endif %}  
+                        
+                        <p>{{rest.resta_contact}}</p>
+                        <p>{{rest.resta_address}}</p>
+                        
+                        <p>{{rest.restaurant_type}}</p>
+                        <p>{{rest.resta_owner }}</p>
+                        <p>{{rest.resta_place}}</p>
+                        
+                  </div>        
+    </div>
+  </div>
+</div>
+</center>
+    {% endfor %}
+</ul>

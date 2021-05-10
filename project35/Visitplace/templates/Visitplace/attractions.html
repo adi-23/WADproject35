@@ -42,18 +42,22 @@
       <span class="navbar-brand mb-0 h1">Search & Pick services</span>
       <form action="{% url 'select1' %}">
         {% csrf_token %}
+      <label style="color: white;">Choose your place</label>
 
-      <select name="places" style="width:250px;height:40px;">
-        <option disabled="true" selected>
+
+      <input list="google" name="places">
+      <datalist  id="google"  style="width:250px;height:40px;">
+        <!-- <option disabled="true" selected>
           Select place
-        </option>
+        </option> -->
         {% for place in Place %}
-        <option>{{ place.place_name}}</option>
+        <option value="{{ place.place_name }}">
         {% endfor %}
 
-      </select>
+      </datalist>
       <input type="submit" value="Select">
     </form>
+    
 
       <ul class="navbar-nav ml-auto">
 
