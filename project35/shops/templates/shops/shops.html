@@ -106,6 +106,7 @@
       <h2 style="text-align:center;">There are no Shops in this place</h2>
 
 {%else%}
+<a href="{% url 'shopsfilter' place_id %}"><i style="font-size:65px;float:right;" class="fa fa-filter" aria-hidden="true"></i></a>
   {% for shop in shops %}
             <center>
             <div class="responsive">

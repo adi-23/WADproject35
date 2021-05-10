@@ -28,7 +28,7 @@ def search(request):
     context={'shoppinginfo': shopping_info, }
     return render(request,"ShoppingComplex/shopping.html",{ # Rendering the shopping complex details in the user specified location
     'Place':Place.objects.all(),
-    'shoppingMalls':shopping_info,'place':p
+    'shoppingMalls':shopping_info,'place_id': iid,'place': p
 
     })
 
@@ -37,16 +37,12 @@ def ShoppingComplexListview(request,place_id):
     # model=Hotel
     # template_name='hotels/hotel_list.html'
 
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     context['filter'] = HotelFilter(self.request.GET, queryset=self.get_queryset())
-    #     return context
     
     place=Place.objects.get(id=place_id)
     shoppingcomplex_list=ShoppingComplex.objects.filter(shoppingcomplex_place=place)
     h = ShoppingComplexFilter(request.GET,queryset=shoppingcomplex_list)
 
-    return render(request,'ShoppingComplex/shoppingcomplex_list.html',{'filter': h,'shoppingcomplex': shoppingcomplex_list})
+    return render(request,'ShoppingComplex/shoppingcomplex_list.html',{'filter': h,'shoppingcomplex': shoppingcomplex_list,'place': place})
 
 
 def form_view(request,user_id):
@@ -67,7 +63,7 @@ def form_view(request,user_id):
         h_sp=User.objects.get(id=user_id)  # Searching the user information based on user id
         shopping = ShoppingComplex(shoppingcomplex_sp=h_sp,shoppingcomplex_hasFloors=form['floors'].value(),shoppingcomplex_name=form['name'].value(),shoppingcomplex_image=form['image'].value(),shoppingcomplex_place=obj,shoppingcomplex_address=form['address'].value(),shoppingcomplex_contactinfo=form['Contactinfo'].value())
         shopping.save()
-        return render(request,'authentication/Serviceuserhomepage.html')
+        return render(request,'hotels/redir.html')
     else: # If the serviceprovider has already added shopping complex details then get the detailed information of their shopping complex otherwise render the shopping complex form 
         if (ShoppingComplex.objects.filter(shoppingcomplex_sp_id=user_id).first()) is not None:
             temp = ShoppingComplex.objects.filter(shoppingcomplex_sp_id=user_id).first() # Looking for information of their shopping complex

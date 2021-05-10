@@ -104,7 +104,48 @@
 
 
 
-  <br>
+
+    <br>
+
+
+    {%if not Hospitals %}
+    <h2 style="text-align:center;">There are no hospitals in this place</h2>
+    
+
+{%else%}
+<a href="{% url 'hospitalfilterview' place_id %}"><i style="font-size:65px;float:right;" class="fa fa-filter" aria-hidden="true"></i></a>
+    {% for hospital in Hospitals %}
+    {% comment %} <section class = "s1">
+        <div class="temp-row">
+          <div class="temp-left"> {% endcomment %}
+          <center>
+          <div class="responsive">
+                  <div class="polaroid">
+                    <div class="row">
+                      <div class="col-sm-6">                      
+                        <img src="{{hospital.hospital_image.url}}" style="vertical-align:top;max-width:100%">
+                      </div>
+                      <div class="container col-sm-6">
+
+                        <h3> Name: {{hospital.hospital_name}}</h3>
+                        <p>Address: {{hospital.hospital_address}}</p>
+                        <p> Doctors: {{hospital.doctors}}</p>
+                        <p>Place: {{hospital.hospital_place.place_name}} </p>
+                        <p>Contact NO: {{hospital.hospital_contactinfo}}</p>
+                    </div>
+                  </div>
+              </div>
+              </div>
+              </center>
+
+    {% endfor %}
+{%endif%}
+
+
+
+
+
+
   <br>
 
 
@@ -166,42 +207,6 @@
     <br>
 
     <br>
-
-{%if not Hospitals %}
-      <h2 style="text-align:center;">There are no hospitals in this place</h2>
-      
-
-{%else%}
-      {% for hospital in Hospitals %}
-      {% comment %} <section class = "s1">
-          <div class="temp-row">
-            <div class="temp-left"> {% endcomment %}
-            <center>
-            <div class="responsive">
-                    <div class="polaroid">
-                      <div class="row">
-                        <div class="col-sm-6">                      
-                          <img src="{{hospital.hospital_image.url}}" style="vertical-align:top;max-width:100%">
-                        </div>
-                        <div class="container col-sm-6">
-
-                          <h3> Name: {{hospital.hospital_name}}</h3>
-                          <p>Address: {{hospital.hospital_address}}</p>
-                          <p> Doctors: {{hospital.doctors}}</p>
-                          <p>Place: {{hospital.hospital_place.place_name}} </p>
-                          <p>Contact NO: {{hospital.hospital_contactinfo}}</p>
-                      </div>
-                    </div>
-                </div>
-                </div>
-                </center>
-
-      {% endfor %}
-{%endif%}
-
-
-
-
 
 
 

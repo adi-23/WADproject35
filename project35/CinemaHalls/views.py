@@ -37,7 +37,7 @@ def form_view(request,user_id):
         cinemaObj=CinemaHall(theatre_owner=user,current_movie=form['current_movie'].value(),cinemahall_name=form['cinemahall_name'].value(),seats=form['seats'].value(),timing=form['timing'].value(),cinemahall_address=form['cinemahall_address'].value(),cinemahall_place=obj,cinemahall_contactinfo=form['cinemahall_contactinfo'].value(),cinemahall_image=form['cinemahall_image'].value())
         cinemaObj.save()
                 
-        return render(request,'authentication/Serviceuserhomepage.html')
+        return render(request,'hotels/redir.html')
     else: # If the serviceprovider has already added cinema hall details then get the detailed information of their cinema hall otherwise render the cinema hall form 
         if (CinemaHall.objects.filter(theatre_owner_id=user_id).first()) is not None:
             temp =CinemaHall.objects.filter(theatre_owner_id=user_id).first() # Looking for information of their cinema hall
@@ -86,13 +86,13 @@ def select(request):
 
             iid=place.id
             break
-
+    place=Place.objects.all()
     cinemahalls_info= CinemaHall.objects.filter(cinemahall_place=iid) # Filtering the cinemahalls according to the place
     context={'cinemahallsinfo': cinemahalls_info, }
     return render(request,"CinemaHalls/cinemahalls.html",{ # Rendering the cinema hall details in the user specified location
     'Place': Place.objects.all(),
     'CinemaHalls':cinemahalls_info,
-    'place_id': iid
+    'place_id': iid,'place': result
 
     })
 
@@ -111,7 +111,7 @@ def CinemaHallListview(request,place_id):
     theatre_list=CinemaHall.objects.filter(cinemahall_place=place)
     h = CinemaHallFilter(request.GET,queryset=theatre_list)
 
-    return render(request,'cinemahalls/cinemahalls_list.html',{'filter': h,'cinemahall': theatre_list})
+    return render(request,'cinemahalls/cinemahalls_list.html',{'filter': h,'cinemahall': theatre_list,'place': place})
 
 
 

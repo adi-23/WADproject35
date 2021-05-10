@@ -51,7 +51,8 @@ def search(request):
     context={'hospitalsinfo': hospitals_info, }
     return render(request,"hospitals/hospitals.html",{ # Rendering the hospital details in the user specified location
     'Place':Place.objects.all(),
-    'Hospitals':hospitals_info,'place':p
+    'Hospitals':hospitals_info,'place':p,
+    'place_id':iid
 
     })
 
@@ -76,7 +77,7 @@ def form_view(request,user_id):
         h_sp=User.objects.get(id=user_id) # Searching the user information based on user id
         hospital = Hospital(hospital_sp=h_sp,doctors=form['doctors'].value(),hospital_name=form['hospitalName'].value(),hospital_image=form['hospitalImage'].value(),hospital_place=obj,hospital_address=form['hospitalAddress'].value(),hospital_contactinfo=form['hospitalContactinfo'].value())
         hospital.save()
-        return render(request,'authentication/Serviceuserhomepage.html')
+        return render(request,'hotels/redir.html')
     else: # If the serviceprovider has already added hospital details then get the detailed information of their hospital otherwise render the hospital form 
         if (Hospital.objects.filter(hospital_sp_id=user_id).first()) is not None:
             temp = Hospital.objects.filter(hospital_sp_id=user_id).first() # Looking for information of their hospital
@@ -101,7 +102,7 @@ def HospitalListview(request,place_id):
     hospital_list=Hospital.objects.filter(hospital_place=place)
     h = HospitalFilter(request.GET,queryset=hospital_list)
 
-    return render(request,'hospitals/hospital_list.html',{'filter': h,'hospital': hospital_list})
+    return render(request,'hospitals/hospital_list.html',{'filter': h,'hospital': hospital_list,'place':place})
 
 # About our Website
 def aboutus(request):

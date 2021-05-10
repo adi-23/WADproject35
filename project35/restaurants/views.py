@@ -70,16 +70,8 @@ def resta_view(request,user_id):
 
                 k=0
 
-                for place in Place.objects.all():
-                    if place.place_name==form['resta_place'].value():
-                        k=1
-                        obj=place
-                        break
-                if k==0:
-                    obj = Place(place_name=form['resta_place'].value())
-                    obj.save()
 
-
+                obj=Place.objects.get(id=form['resta_place'].value())
                 user=User.objects.get(id=user_id)
                 restaObj=Restaurant(resta_owner=user,
                                     resta_name=form['resta_name'].value(),
@@ -140,10 +132,10 @@ def search(request):
 def RestaurantListview(request,place_id):
     
     place=Place.objects.get(id=place_id)
-    h_list=Restaurant.objects.filter(hotel_place=place)
+    h_list=Restaurant.objects.filter(resta_place=place)
     h = RestaurantFilter(request.GET,queryset=h_list)
 
-    return render(request,'restaurants/restaurant_list.html',{'filter': h,'restaurants': h_list})
+    return render(request,'restaurants/restaurant_list.html',{'filter': h,'restaurants': h_list,'place': place})
 
 
 def aboutus(request):

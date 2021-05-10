@@ -1,23 +1,63 @@
-
+{% load static %}
 {% load bootstrap %}
-<div class="container">
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html>
+<head>
+  
+  <link rel="stylesheet" href="{% static 'restaurants/css/restaurant.css'%}">
+  <link rel="stylesheet" href="{% static 'restaurants/css/rest1.css'%}">
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     
-    <form method="GET">
-    {{ filter.form }}
-    <button type="submit" class="btn btn-secondary"> Search </button>
-    </form>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+
+</head>
+<body>
+        <center>    <h1>Filter the Shops in {{place.place_name}}</h1></center>
+          <div class="container" style="width:50%;">
+              
+              <form class="form-inline" method="GET">
+                
+              {{ filter.form|crispy }}
+                
+                <br>
+              <button type="submit" class="btn btn-secondary"> Search </button>
+              </form>
+              
 
 
 
-</div>
-<ul>
-    {% for shop in filter.qs %}
+          </div>
+          <br>
+          <br>
+              {% for shop in filter.qs %}
 
-        <li>
-            {{ shop.shop_name }}
-            
+              <center>
+                <div class="responsive">
+                    <div class="polaroid">
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <img src="{{shop.shop_image.url}}" width= 45% height= 250px style="vertical-align:top;max-width:100%">
+                        </div>
+                        <div class="container col-sm-6">
 
-        </li>
+                          <h3>Shop name:  {{shop.shop_name}}</h3>
+                          <p>Itemtype: {{shop.shop_itemtype}}</p>
+                          <p>Address: {{shop.shop_address}}</p>
+                          
+                          <p>Place: {{shop.shop.place_name}} </p>
+                          <p>Contact NO: {{shop.shop_contactinfo}}</p>
+                      </div>        
+        </div>
+      </div>
+    </div>
+              </center>
+              {% endfor %}
+          
+</body>
 
-    {% endfor %}
-</ul>
+</html>

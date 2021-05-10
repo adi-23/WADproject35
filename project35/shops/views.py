@@ -22,8 +22,8 @@ class ShopForm(forms.ModelForm):
     # shopplace=forms.Charfield(label='shopplace',max_length=30)
     class Meta:
         model=Shop
-        fields=["shop_owner","shop_name","shop_image","shop_address","shop_contactinfo","shop_place","shop_itemtype"]
-        labels={'shop_owner': "enter your username",
+        fields=["shop_name","shop_image","shop_address","shop_contactinfo","shop_place","shop_itemtype"]
+        labels={
         'shop_name': "enter shopname",
         'shop_address': "address",
         'shop_contactinfo': "contact",
@@ -59,18 +59,12 @@ def form_view(request,user_id):
         form=ShopForm(request.POST,request.FILES)
         k=0
         places=Place.objects.all()
-        for place in places:
-            if form['shop_place'].value() == place.place_name:
-                k=1
-                obj=place
-                break
-        if k == 0:
-            obj=Place(place_name=form['shop_place'].value())
-            obj.save()
+        
+        obj=Place.objects.get(id=form['shop_place'].value())
         shop_owner=User.objects.get(id=user_id)
         sp = Shop(shop_image=form['shop_image'].value(),shop_owner=shop_owner,shop_itemtype=form['shop_itemtype'].value(),shop_name=form['shop_name'].value(),shop_place=obj,shop_address=form['shop_address'].value(),shop_contactinfo=form['shop_contactinfo'].value())
         sp.save()
-        return render(request,'authentication/Serviceuserhomepage.html')
+        return render(request,'hotels/redir.html')
     else:
         if (Shop.objects.filter(shop_owner_id=user_id).first()) is not None:
             temp = Shop.objects.filter(shop_owner_id=user_id).first()
@@ -97,7 +91,8 @@ def search(request):
     context={'shopinfo': shop_info, }
     return render(request,"shops/shops.html",{
     'Place':Place.objects.all(),
-    'shops':shop_info,'place':p
+    'shops':shop_info,'place':p,
+    'place_id': iid
 
     })  
 
@@ -113,7 +108,7 @@ def shops(request,place_id):
     s_list=Shop.objects.filter(shop_place=place)
     s = ShopFilter(request.GET,queryset=s_list)
 
-    return render(request,'shops/shops_list.html',{'filter': s,'hotels': s_list})
+    return render(request,'shops/shops_list.html',{'filter': s,'hotels': s_list,'place':place})
 
 
 
@@ -122,26 +117,19 @@ def editshops(request,user_id):
     user=User.objects.get(id=user_id)
     sp_user=serviceprovider.objects.get(user=user)
     shop_display=Shop.objects.filter(shop_owner=sp_user)
-    # shop_form=ShopForm(instance=shop_display)
-    # if request.method == 'POST':
-    #     shop_form= ShopForm(request.POST,instance=shop_display)
-    #     if shop_form.is_valid():
-    #         shop_form.save()
-    #         return redirect('/')
-    # context={'shop_form': shop_form}
-    # return render(request,'shops/shopsedit.html',context)
+
     # dictionary for initial data with 
     # field names as keys
     context ={}
   
-    # fetch the object related to passed id
-    #obj = get_object_or_404(Shop, id = id)
+                                                # fetch the object related to passed id
+                                                #obj = get_object_or_404(Shop, id = id)
   
-    # pass the object as instance in form
+                                                # pass the object as instance in form
     form = ShopForm(request, instance = shop_display)
   
-    # save the data from the form and
-    # redirect to detail_view
+                         # save the data from the form and
+                         # redirect to detail_view
     if form.is_valid():
         form.save()
         # return HttpResponseRedirect("/"+id)

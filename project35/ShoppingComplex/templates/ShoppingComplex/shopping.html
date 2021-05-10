@@ -105,6 +105,7 @@
       <h2 style="text-align:center;">There are no ShoppingComplex in this place</h2>
 
 {%else%}
+<a href="{% url 'shoppingcomplexfilter' place_id %}"><i style="font-size:65px;float:right;" class="fa fa-filter" aria-hidden="true"></i></a>
   {% for shoppingcomplex in shoppingMalls %}
             <center>
             <div class="responsive">

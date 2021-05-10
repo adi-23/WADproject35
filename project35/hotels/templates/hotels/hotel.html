@@ -94,7 +94,7 @@
       <br>
       <br>
 
-
+<center><h1>Now you are searching hotels in {{ place}}</h1></center>
 
 
 
@@ -112,6 +112,7 @@
       <h2 style="text-align:center;">There are no hotels in this place</h2>
 
 {%else%}
+<a href="{% url 'HotelListview' place_id %}"><i style="font-size:65px;float:right;" class="fa fa-filter" aria-hidden="true"></i></a>
   {% for hotel in Hotel %}
             <center>
             <div class="responsive">

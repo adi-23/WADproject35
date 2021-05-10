@@ -77,7 +77,9 @@ def index(request):
     context={'hotelsinfo': hotels_info, }
     return render(request,"hotels/hotel.html",{
     'Place':Place.objects.all(),
-    'Hotel':hotels_info
+    'Hotel':hotels_info,
+    'place_id': iid,
+    'place': result
 
     })
 
@@ -117,19 +119,13 @@ def add(request,user_id):
             })
 
 def HotelListview(request,place_id):
-    # model=Hotel
-    # template_name='hotels/hotel_list.html'
 
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     context['filter'] = HotelFilter(self.request.GET, queryset=self.get_queryset())
-    #     return context
     
     place=Place.objects.get(id=place_id)
     h_list=Hotel.objects.filter(hotel_place=place)
     h = HotelFilter(request.GET,queryset=h_list)
 
-    return render(request,'hotels/hotel_list.html',{'filter': h,'hotels': h_list})
+    return render(request,'hotels/hotel_list.html',{'filter': h,'hotels': h_list,'place': place})
 
 
 
