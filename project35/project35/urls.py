@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path,include
 from django.conf import settings
 from django.conf.urls.static import static
-
+from Visitplace import views 
 #from authentication import views
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -31,6 +31,7 @@ urlpatterns = [
     path('restaurants/',include('restaurants.urls')),
     path('shoppingcomplex/',include('ShoppingComplex.urls')),
     path('visitplace/',include('Visitplace.urls')),
+    path('help/',views.help,name="help")
 
 
 ]

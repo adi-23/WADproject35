@@ -1,23 +1,62 @@
-
+{% load static%}
 {% load bootstrap %}
-<div class="container">
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hote Detail</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+  <br>
+  <br>
+  <div style="background-color: #3d84a8;">
+    <span style="color: white;" class="navbar-brand mb-0 h1">Search & Pick services</span>
+ </div>
+<br><br>
+  <center>
+    <img class="img-circle" src="{{object.hotel_img.url}}" width= 45% height= 250px style="vertical-align:top;max-width:50%">
+    <br>
+    <br>
+    <div  style="font-size:medium " class="container">
+      
+    <table class="table">
+      <tr>
+       <td><strong>Name:</strong> {{object.hotel_name}}</td>
+      </tr>
+      <tr>
+      <td>  <strong>Address:</strong> {{object.hotel_address}}</td>
+      </tr>
+        {% if object.hotel_hasACrooms %}
+        <tr>
+          <td>
+          Hotel has AC rooms
+          </td>
+        </tr>
+        {% else %}
+        <tr>
+          <td>
+          Hotel has NON-AC rooms
+          </td>
+        </tr>
+        {% endif %}
+        <tr>
+          <td><strong>Place:</strong> {{object.hotel_place.place_name}}</td> </tr>
+        <tr><td> <strong>Number:</strong> {{object.hotel_contactinfo}} </td></tr>
+        <tr>
+           <td> 
+             <a href="{% url 'hotel_update' object.id %}"><button type="button" class="btn btn-success">Update</button></a>
+          </td>
+      </tr>
+    </table>
+    </div>
+
     
-    <form method="GET">
-    {{ filter.form }}
-    <button type="submit" class="btn btn-secondary"> Search </button>
-    </form>
-
-
-
-</div>
-<ul>
-    {% for hotel in filter.qs %}
-
-        <li>
-            {{ hotel.hotel_name }}
-            
-
-        </li>
-
-    {% endfor %}
-</ul>
+  </center>
+</body>
+</html>

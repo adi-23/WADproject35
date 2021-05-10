@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
     <head>
@@ -194,15 +195,15 @@
           <ul class="navbar-nav ml-auto">
 
             <li class="nav-item">
-                <a style="color:white;" class="nav-link" href="">contact</a>
+                <a style="color:white;" class="nav-link" href="{% url 'contact' %}">contact</a>
             </li>
             <li class="nav-item">
-               <a style="color:white;" class="nav-link" href="">
+               <a style="color:white;" class="nav-link" href="{% url 'help' %}">
                 help
                </a>
             </li>
             <li class="nav-item">
-              <a style="color: white;" class="nav-link" href="">
+              <a style="color: white;" class="nav-link" href="/">
                 Log out
                </a>
             </li>
@@ -225,53 +226,55 @@
 <!-- <h2>Automatic Slideshow</h2>
 <p>Change image every 2 seconds:</p> -->
 
-        <div class="slideshow-container">
-
-        <div class="mySlides fade">
-        <div class="numbertext">1 / 7</div>
-        <img src="../../../../project35/authentication/static/authentication/homepagepics/attractions.jpg" style="width:50%">
-
-        </div>
-
-        <div class="mySlides fade">
-        <div class="numbertext">2 / 7</div>
-        <img src="../../../../project35/authentication/static/authentication/homepagepics/shops.jpg" style="width:50%">
-
-        </div>
-
-        <div class="mySlides fade">
-        <div class="numbertext">3 / 7</div>
-        <img src="../../../../project35/authentication/static/authentication/homepagepics/shoppingmall.jpg" style="width:50%">
-
-        </div>
-
-        <div class="mySlides fade">
-        <div class="numbertext">4 / 7</div>
-        <img src="../../../../project35/authentication/static/authentication/homepagepics/hospital.jpg" style="width:50%">
-
-        </div>
-
-        <div class="mySlides fade">
-        <div class="numbertext">5 / 7</div>
-        <img src="../../../../project35/authentication/static/authentication/homepagepics/hotelpic.jpg" style="width:50%">
-
-        </div>
-
-        <div class="mySlides fade">
-        <div class="numbertext">6 / 7</div>
-        <img src="../../../../project35/authentication/static/authentication/homepagepics/cinemahall.jpg" style="width:50%">
-
-        </div>
-
-        <div class="mySlides fade">
-        <div class="numbertext">7 / 7</div>
-        <img src="../../../../project35/authentication/static/authentication/homepagepics/restaurant.jpg" style="width:100%">
-
-        </div>
-
-        </div>
         <br>
-
+        <center>
+         <div class="slideshow-container">
+ 
+         <div class="mySlides fade">
+         <div class="numbertext">1 / 7</div>
+         <img src="{% static 'authentication/homepagepics/attractions.jpg' %}" style="width:50%">
+ 
+         </div>
+ 
+         <div class="mySlides fade">
+         <div class="numbertext">2 / 7</div>
+         <img src="{%  static 'authentication/homepagepics/shops.jpg' %}" style="width:50%">
+ 
+         </div>
+ 
+         <div class="mySlides fade">
+         <div class="numbertext">3 / 7</div>
+         <img src="{% static 'authentication/homepagepics/shoppingmall.jpg' %}" style="width:50%">
+ 
+         </div>
+ 
+         <div class="mySlides fade">
+         <div class="numbertext">4 / 7</div>
+         <img src=" {%static 'authentication/homepagepics/hospital.jpg' %}" style="width:50%">
+ 
+         </div>
+ 
+         <div class="mySlides fade">
+         <div class="numbertext">5 / 7</div>
+         <img src="{% static 'authentication/homepagepics/hotelpic.jpg' %}" style="width:50%">
+ 
+         </div>
+ 
+         <div class="mySlides fade">
+         <div class="numbertext">6 / 7</div>
+         <img src="{% static 'authentication/homepagepics/cinemahall.jpg' %}" style="width:50%">
+ 
+         </div>
+ 
+         <div class="mySlides fade">
+         <div class="numbertext">7 / 7</div>
+         <img src="{% static 'authentication/homepagepics/restaurant.jpg' %}" style="width:50%">
+ 
+         </div>
+ 
+         </div>
+         <br>
+ </center>
      <div style="text-align:center">
         <span class="dot"></span>
         <span class="dot"></span>

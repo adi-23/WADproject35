@@ -46,3 +46,7 @@ def contact(request):
 
 def homepage(request):
     return render(request,'authentication/Serviceuserhomepage.html')
+
+
+def help(request):
+    return render(request,'Visitplace/help.html')
