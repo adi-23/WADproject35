@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> hotelsdd </title>
+    </head>
+
+    <body>
+
+        <div>
+            <!-- <form method="POST">
+                <fieldset>
+                    <legend>Edit Shop Details</legend>
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit">Add</button>
+
+                </fieldset>
+            </form> -->
+        {% for s in shop %}
+            {{ s.shop_name }}
+
+        {% endfor %}
+
+        </div>
+
+
+    </body>
+</html>

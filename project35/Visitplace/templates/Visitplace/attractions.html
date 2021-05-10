@@ -1,0 +1,243 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attractions</title>
+    <link rel="stylesheet" href="{% static 'Visitplace/attraction.css'%}">
+    <script src="{% static 'hotels/js/hotel.js' %}"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="st.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+</head>
+<body  onLoad="showSlides(); viewSlides();">
+
+
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="{% url 'hospitals' %}"><i class="fa fa-plus space" aria-hidden="true"></i>Hospitals</a>
+        <a href="{% url 'hotels' %}"><i class="fa fa-bed space" aria-hidden="true"></i>Hotels</a>
+        <a href="{% url 'cinemahalls' %}"><i class="fa fa-film space" aria-hidden="true"></i>Cinema Halls</a>
+        <a href="{% url 'shoppingcomplex' %}"><i class="fa fa-shopping-cart space" aria-hidden="true"></i>Shopping Malls</a>
+        <a href="{% url 'restaurant' %}"><i class="fa fa-text-width space" aria-hidden="true"></i>Restaurants</a>
+        <a href="{% url 'shopDet' %}"><i class="fa fa-shopping-bag space" aria-hidden="true"></i>Shops</a>
+        <a href="{% url 'show' %}"><i class="fa fa-text-width space" aria-hidden="true"></i>Attractions</a>
+      </div>
+<nav class="navbar navbar-light navbar-expand-lg" style="background-color: #3d84a8;">
+  <div id="main">
+
+    <button style="color: white;" class="btn btn-primary" onclick="openNav()"&#9776;><i style="color: white;" class="fa fa-ellipsis-v"></i></button>
+
+    </div>
+
+
+    <div class="container-fluid">
+      <span class="navbar-brand mb-0 h1">Search & Pick services</span>
+      <form action="{% url 'select1' %}">
+        {% csrf_token %}
+      <label style="color: white;">Choose your place</label>
+
+
+      <input list="google" name="places">
+      <datalist  id="google"  style="width:250px;height:40px;">
+        <!-- <option disabled="true" selected>
+          Select place
+        </option> -->
+        {% for place in Place %}
+        <option value="{{ place.place_name }}">
+        {% endfor %}
+
+      </datalist>
+      <input type="submit" value="Select">
+    </form>
+    
+
+      <ul class="navbar-nav ml-auto">
+
+        <li class="nav-item">
+          <a style="color: white;" class="nav-link" href="{% url 'homepage' %}"><i style="color: white;" class="fa fa-home space"></i>Home</a>
+      </li>
+
+        <li class="nav-item">
+            <a style="color: white;" class="nav-link" href="{% url 'contact' %}"><i style="color: white;" class="fa fa-phone space"></i>Contact</a>
+        </li>
+        <li class="nav-item"><a style="color: white;" class="nav-link" href="{% url 'help' %}">
+          <i style="color: white;" class="fa fa-question-circle"></i>
+          Help
+        </a></li>
+        <li class="nav-item">
+          <a style="color: white;" class="nav-link" href="/">
+            <i style="color: white;" class="fa fa-sign-out"></i>
+            Logout
+        </a>
+
+      </li>
+
+
+    </ul>
+
+
+    </div>
+  </nav>
+
+
+      <br>
+      <br>
+
+
+
+
+
+
+
+  <br>
+  <br>
+
+
+  
+  {% for visitplaces in Visitplace %}
+  <section class = "s1">
+      <div class="temp-row">
+        <div class="temp-left">
+          <img src="{{visitplaces.attraction_img.url}}" width= 45% height= 250px style="vertical-align:top;max-width:100%">
+        </div>
+
+        <div class="temp-right">
+
+          <h1> Name: {{visitplaces.attraction_name}}</h1>
+          <p>Type: {{visitplaces.attraction_type}}</p>
+          <p>Place: {{visitplaces.attraction_place.place_name}} </p>
+          <p>Description: {{visitplaces.attraction_description}}</p>
+          <!-- <a href="https://www.trivago.in/" target="_blank">Link for booking</a> -->
+        </div>
+      </div>
+  </section>
+  {% endfor %}
+  <br>
+  <br>
+
+  <!-- used for slide show of images(slideshow container) -->
+  <center>
+    <div class="slideshow-container1">
+
+      <div class="mySlides fade">
+        <div class="img_size">
+          <div class="numbertext">1 / 5</div>
+          <img src="https://tse3.mm.bing.net/th?id=OIP.OAmm-4-1fJ6puI9l2vLouwHaFj&pid=Api&P=0&w=204&h=154" >
+        </div>
+      </div>
+  
+      <div class="mySlides fade">
+        <div class="img_size">
+          <div class="numbertext">2 / 5</div>
+          <img src="https://tse1.mm.bing.net/th?id=OIP.5mqwRHiM4seADicm8KzolAHaFb&pid=Api&P=0&w=208&h=153" >
+        </div>
+      </div>
+  
+      <div class="mySlides fade">
+        <div class="img_size">
+          <div class="numbertext">3 / 5</div>
+          <img src="https://tse1.mm.bing.net/th?id=OIP.2vUZ3LCDlByAuXyH361M0QHaFj&pid=Api&P=0&w=200&h=151" >
+        </div>
+      </div>
+  
+      <div class="mySlides fade">
+        <div class="img_size">
+          <div class="numbertext">4 / 5</div>
+          <img src="https://tse4.mm.bing.net/th?id=OIP.vXDyxUAy8fZdpvlcIu4DAQHaE8&pid=Api&P=0&w=240&h=161" >
+        </div>
+      </div>
+  
+      <div class="mySlides fade">
+        <div class="img_size">
+          <div class="numbertext">5 / 5</div>
+          <img src="https://tse4.mm.bing.net/th?id=OIP.Kio10Kdu56ViJQzyT_yVxgHaHa&pid=Api&P=0&w=300&h=300" >
+        </div>
+      </div>
+  
+  
+  
+      </div>
+  </center>
+    <br>
+
+    <div style="text-align:center">
+      <span class="dot" ></span>
+      <span class="dot" ></span>
+      <span class="dot" ></span>
+      <span class="dot" ></span>
+      <span class="dot" ></span>
+
+    </div>
+
+
+
+    <br>
+
+    <br>
+
+
+
+
+
+
+
+
+
+
+
+    <br>
+    <br>
+
+
+
+
+   
+           
+
+        <section style="background-color:#3d84a8;" id="footer">
+        <center>
+            <div class="title-text">
+            <h2><b>Thank You For Visiting Our Website <i class="fa fa-smile-o" aria-hidden="true"></i></b></h2>
+            
+            </div>
+        </center>
+
+            <div class="footer-row">
+                <div class="footer-left">
+                    <a href="{% url 'aboutus' %}"><h1>About Us</h1><a>
+                    <p>Hello, Welcome to 'Search and pick'. </p>
+                    <p>We help you to get best services in a particular location you selected</p>
+                </div>
+                <div class="footer-right">
+                        <h1>Get In Touch</h1>
+                        <p>Address: #30 abc colony, xyz city <i class="fa fa-map-marker" aria-hidden="true"></i></p>
+                        <p>Mail: example@gmail.com <i class="fa fa-paper-plane" aria-hidden="true"></i></p>
+                        <p>Phone number: 1223334521 <i class="fa fa-phone" aria-hidden="true"></i></p>
+                </div>
+
+
+
+
+    </section>
+
+
+
+
+   
+
+    
+    
+   
+    {% comment %} <script src="attraction.js">
+
+    </script> {% endcomment %}
+      </body>
+    </html>

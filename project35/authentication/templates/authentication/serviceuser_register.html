@@ -1,0 +1,47 @@
+{% load widget_tweaks %}
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="{% static 'authentication/styles1.css' %}">
+  </head>
+  <body>
+    <div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <form class="box" action="{% url 'serviceuser_register' %}" method="POST">
+                    {% csrf_token %}
+                    <a href="/">
+                      <button type="button"  style="float:right;" class="but">X</button>
+                    </a>
+                    
+                    <h1>Register</h1>
+
+                    {% comment %} <p class="text-muted" style="color:white">Enter username and password to register</p> <input type="text" name="username" placeholder="Username"> <input type="password" name="password1" placeholder="Password"><input type="password" name ="password2" placeholder="Confirm password">  <input type="submit" value="Register" href="#">
+                    {%for message in messages %}
+                      <h6 style="color:white;">{{message}}</h6>
+                    {% endfor %} {% endcomment %}
+
+                    {% for field in form.visible_fields %}
+                           <div class="form-group">
+                               {{ field.label_tag }}
+                                  {% render_field field class="form-control" %}
+                                    {% for error in field.errors %}
+                                      <span style="color:red">{{ error }}</span>
+                                    {% endfor %}
+                    {% endfor %}
+                    <input type="submit" value="Register" class="btn btn-block btn-primary">
+                           </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+  </body>
+</html>

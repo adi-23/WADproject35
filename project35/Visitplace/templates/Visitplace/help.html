@@ -1,0 +1,54 @@
+{% load static %}
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>SEARCH AND PICK HELP</title>
+  <link rel='stylesheet' href='https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css'>
+<link rel="stylesheet" href="{% static 'Visitplace/style.css'%}">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+ <div style="background-color: #3d84a8;">
+    <span style="color: white;" class="navbar-brand mb-0 h1">Search & Pick services</span>
+ </div>
+<div class="container">
+ 
+  <h2>Frequently Asked Questions</h2>
+ 
+  <div class="accordion">
+    <div class="accordion-item">
+      <a>What is Search and Pick Services?</a>
+      <div class="content">
+        <p>Search and pick service is web application designed to help you to know the services offrered in a particular place.</p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <a>How can I select my place in ?</a>
+      <div class="content">
+        <p>When signed into the home page.Select which service you wnat to choose and click on it.  You explore a page. On the middle navigation bar you find a input box. You can write the place and Select it  </p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <a>Can filter the services in a particular place?</a>
+      <div class="content">
+        <p> select the place in the particular service. If there is a place in the particular service. A Blue filter Icon displayed Right side . Then based on your interests you can select you restaurant,Shops,shoppingcomplex,....</p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <a>How to contact you</a>
+      <div class="content">
+        <p>Click on Contact or Aboutus in footer you can mail us</p>
+      </div>
+    </div>
+    
+  </div>
+  
+</div>
+ 
+<script src='https://code.jquery.com/jquery-3.2.1.min.js'></script>
+<script  src="{% static 'Visitplace/function.js' %}"></script>
+<a href="/">
+<button style="margin-right: 40px; margin-top: 40px;" type="button" class="btn btn-primary">Logout</button>
+ </a>
+</body>
+</html>

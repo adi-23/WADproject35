@@ -1,0 +1,94 @@
+{% load static %}
+{% load bootstrap %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html>
+<head>
+  
+  <link rel="stylesheet" href="{% static 'restaurants/css/restaurant.css'%}">
+  <link rel="stylesheet" href="{% static 'restaurants/css/rest1.css'%}">
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+
+</head>
+<body>
+        <center>    <h1>Filter the RESTAURANTS IN {{place.place_name}}</h1></center>
+          <div class="container" style="width:50%;">
+              
+              <form class="form-inline" method="GET">
+                
+              {{ filter.form|crispy }}
+                
+                <br>
+              <button type="submit" class="btn btn-secondary"> Search </button>
+              </form>
+              
+
+
+
+          </div>
+          <br>
+          <br>
+              {% for rest in filter.qs %}
+
+              <center>
+                  <div class="responsive">
+                          <div class="polaroid">
+                            <div class="row">
+                              <div class="col-sm-6">
+                                <img src="{{ rest.resta_img.url }}" width= 45% height= 250px style="vertical-align:top;max-width:100%">
+                              </div>
+                              <div class="container col-sm-6">
+
+                                  <h3>{{rest.resta_name}}</h3>
+                                  {% if rest.has_AC %}
+                                <p>
+                                  AC restaurant
+                                </p>
+                                {% else %}
+                                <p>
+                                  NON-AC restaurant
+                                </p>
+                                {% endif %}  
+                                  
+                                {% if rest.has_delivery %}
+                                <p>
+                                  Delivery option available
+                                </p>
+                                {% else %}
+                                <p>
+                                  No delivery service
+                                </p>
+                                {% endif %}  
+                                {% if rest.has_parking %}
+                                <p>
+                                  Parking available
+                                </p>
+                                {% else %}
+                                <p>
+                                  Parking not available
+                                </p>
+                                {% endif %}  
+                                  
+                                  <p>{{rest.resta_contact}}</p>
+                                  <p>{{rest.resta_address}}</p>
+                                  
+                                  <p>{{rest.restaurant_type}}</p>
+                                  <p>{{rest.resta_owner }}</p>
+                                  <p>{{rest.resta_place}}</p>
+                                  
+                            </div>        
+              </div>
+            </div>
+          </div>
+          </center>
+              {% endfor %}
+          
+</body>
+
+</html>

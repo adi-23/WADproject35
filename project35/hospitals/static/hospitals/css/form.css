@@ -1,0 +1,167 @@
+* {
+    box-sizing: border-box;
+  }
+
+
+body, html {
+    height: 100%;
+    margin: 0;
+  }
+
+.form{
+    float:right;
+    padding-right:50px;
+}
+
+  .border{
+      width:fit-content;
+  }
+
+.background{
+    background-image: url("../img/hospitalform.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    max-width: 100%;
+    height: 100%; 
+    background-position: center;
+  }
+  
+  
+  .container{
+    background-color: rgb(215,228,240);
+    padding: 30px;
+    width: fit-content;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    text-align: center;
+    transition: 0.25s;
+    color: #34546d;
+    font-weight: 500;
+    font-size: large;
+}
+
+.container h1{
+    color:#009cdc;
+    /* padding-right: 30px;
+    padding-left: 30px; */
+    text-decoration: underline;
+}
+
+.forgot {
+    text-decoration: underline
+}
+
+
+.box input[type="text"],
+.box input[type="password"] {
+    border: 0;
+    background: #a5c5d5;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #3498db;
+    padding: 10px 10px;
+    width: 250px;
+    outline: none;
+    color: blue;
+    border-radius: 24px;
+    transition: 0.25s
+}
+
+
+
+
+.box input[type="text"]:focus,
+.box input[type="password"]:focus {
+    width: 300px;
+    border-color: #3498db;
+    color: blue;
+    background-color: #a5c5d5;
+}
+
+
+.box input[type="submit"] {
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #44778d;
+    padding: 14px 40px;
+    outline: none;
+    border-radius: 24px;
+    transition: 0.25s;
+    cursor: pointer;
+    color:#3498db;
+}
+
+.box input[type="submit"]:hover {
+    background: #1c0377
+}
+
+
+.button  {
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #2ecc71;
+    padding: 14px 40px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+    cursor: pointer
+}
+
+button:hover {
+    background: #2ecc71
+}
+
+
+
+
+@media screen and (max-width: 600px) {
+
+    
+    .form{
+        float: center;
+        padding:0px;
+    }
+    .box input[type=submit] {
+      width: min-content;
+      margin-top: 2px;
+      padding: 10px;
+      font-size: 13px;
+    }
+
+    .container{
+        width:min-content;
+        font-size: smaller;
+        padding: 10px;
+    }
+
+    .box input[type="text"],
+    .box input[type="password"]{
+        width: 200px;
+        margin-bottom: 5px;
+    }
+
+    body{
+        background-size: cover;
+        height: 100%;
+    }
+
+    .box input[type="text"]:focus,
+    .box input[type="password"]:focus{
+        width:250px;
+    }
+
+    .container h1{
+        font-size: medium;
+    }
+    
+}

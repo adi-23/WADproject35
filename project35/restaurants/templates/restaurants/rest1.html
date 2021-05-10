@@ -1,0 +1,268 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurants</title>
+    <link rel="stylesheet" href="{% static 'restaurants/css/restaurant.css'%}">
+    <link rel="stylesheet" href="{% static 'restaurants/css/rest1.css'%}">
+    <script src="{% static 'restaurants/js/restaurant.js' %}"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+</head>
+<body  onLoad="showSlides(); viewSlides();">
+
+
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="{% url 'hospitals' %}"><i class="fa fa-plus space" aria-hidden="true"></i>Hospitals</a>
+        <a href="{% url 'hotels' %}"><i class="fa fa-bed space" aria-hidden="true"></i>Hotels</a>
+        <a href="{% url 'cinemahalls' %}"><i class="fa fa-film space" aria-hidden="true"></i>Cinema Halls</a>
+        <a href="{% url 'shoppingcomplex' %}"><i class="fa fa-shopping-cart space" aria-hidden="true"></i>Shopping Malls</a>
+        <a href="{% url 'restaurant' %}"><i class="fa fa-text-width space" aria-hidden="true"></i>Restaurants</a>
+        <a href="{% url 'shopDet' %}"><i class="fa fa-shopping-bag space" aria-hidden="true"></i>Shops</a>
+        <a href="{% url 'show' %}"><i class="fa fa-text-width space" aria-hidden="true"></i>Attractions</a>
+      </div>
+
+<nav class="navbar navbar-light navbar-expand-lg" style="background-color: #3d84a8;">
+  <div id="main">
+
+    <button style="color: white;" class="btn btn-primary" onclick="openNav()"&#9776;><i style="color: white;" class="fa fa-ellipsis-v"></i></button>
+
+    </div>
+    <div class="container-fluid">
+      <span style="color: white;" class="navbar-brand mb-0 h1">Search & Pick services</span>
+      
+      <form action="{% url 'restsearch' %}">
+        {% csrf_token %}
+      <label style="color: white;">Choose your place</label>
+
+
+      <input list="google" name="places">
+      <datalist  id="google"  style="width:250px;height:40px;">
+        <!-- <option disabled="true" selected>
+          Select place
+        </option> -->
+        {% for place in Place %}
+        <option value="{{ place.place_name }}">
+        {% endfor %}
+
+      </datalist>
+      <input type="submit" value="Select">
+    </form>
+    
+
+    <ul class="navbar-nav ml-auto">
+
+        <li class="nav-item">
+          <a style="color: white;" class="nav-link" href="{% url 'homepage' %}"><i style="color: white;" class="fa fa-home space"></i>Home</a>
+      </li>
+
+        <li class="nav-item">
+            <a style="color: white;" class="nav-link" href="{% url 'contact' %}"><i style="color: white;" class="fa fa-phone space"></i>Contact</a>
+        </li>
+        <li class="nav-item"><a style="color: white;" style="color: white;" class="nav-link" href="{% url 'help' %}">
+          <i style="color: white;" class="fa fa-question-circle"></i>
+          Help
+        </a></li>
+        <li class="nav-item">
+          <a style="color: white;" class="nav-link" href="/">
+            <i style="color: white;" class="fa fa-sign-out"></i>
+            Logout
+        </a>
+
+      </li>
+
+
+    </ul>
+
+
+
+    </div>
+  </nav>
+
+
+
+      <br>
+      <br>
+
+    {%for p in place%}
+            <center><h1>Now,You are searching restaurants at {{p.place_name}} </h1></center>
+    {%endfor%}
+
+
+
+  <br>
+  <br>
+
+{%if not Restaurants %}
+      <h2 style="text-align:center;">There are no Restaurants in this place</h2>
+
+{%else%}
+<a href="{% url 'restaurantfilter' place_id %}"><i style="font-size:65px;float:right;" class="fa fa-filter" aria-hidden="true"></i></a>
+  {% for rest in Restaurants %}
+            <center>
+            <div class="responsive">
+                    <div class="polaroid">
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <img src="{{rest.resta_img.url}}" width= 45% height= 250px style="vertical-align:top;max-width:100%">
+                        </div>
+                        <div class="container col-sm-6">
+
+                            <h3>{{rest.resta_name}}</h3>
+                            {% if rest.has_AC %}
+                          <p>
+                             AC restaurant
+                          </p>
+                          {% else %}
+                          <p>
+                            NON-AC restaurant
+                          </p>
+                          {% endif %}  
+                            
+                          {% if rest.has_delivery %}
+                          <p>
+                             Delivery option available
+                          </p>
+                          {% else %}
+                          <p>
+                            No delivery service
+                          </p>
+                          {% endif %}  
+                          {% if rest.has_parking %}
+                          <p>
+                             Parking available
+                          </p>
+                          {% else %}
+                          <p>
+                            Parking not available
+                          </p>
+                          {% endif %}  
+                            
+                            <p>{{rest.resta_contact}}</p>
+                            <p>{{rest.resta_address}}</p>
+                            
+                            <p>{{rest.restaurant_type}}</p>
+                            <p>{{rest.resta_owner }}</p>
+                            <p>{{rest.resta_place}}</p>
+                            
+                      </div>        
+        </div>
+      </div>
+    </div>
+</center>
+  {% endfor %}
+{% endif%}
+
+
+
+
+
+
+
+
+
+    <br>
+    <br>
+
+
+
+
+    <center>
+      <div class="slideshow-container1">
+    
+        <div class="mySlides fade">
+            <div class="img_size">
+          <div class="numbertext">1 / 5</div>
+          <img src="https://tse3.mm.bing.net/th?id=OIP.B4xgXKHohn2jNlHx7eJ6kgHaE3&pid=Api&P=0&w=240&h=159" >
+        </div>
+        </div>
+    
+        <div class="mySlides fade">
+              <div class="img_size">
+          <div class="numbertext">2 / 5</div>
+          <img src="https://tse4.mm.bing.net/th?id=OIP.80sjn7aicoP1_5aWQQGHfwHaEP&pid=Api&P=0&w=301&h=173" >
+        </div>
+        </div>
+    
+        <div class="mySlides fade">
+          <div class="img_size">    
+          <div class="numbertext">3 / 5</div>
+          <img src="https://tse3.mm.bing.net/th?id=OIP.oOgc4Y6_2wD3GqZjMDEFXwHaE7&pid=Api&P=0&w=243&h=163" >
+        </div>
+        </div>
+    
+        <div class="mySlides fade">
+              <div class="img_size">
+          <div class="numbertext">4 / 5</div>
+          <img src="{% static 'ShoppingComplex/img/copy of d1.jpg' %}" >
+        </div>
+        </div>
+    
+        <div class="mySlides fade">
+              <div class="img_size">
+          <div class="numbertext">5 / 5</div>
+          <img src="{% static 'ShoppingComplex/img/copy of d2.jpg' %}" >
+        </div>
+        </div>
+    
+        </div>
+    </center>
+    
+        <br>
+    
+        <div style="text-align:center">
+          <span class="dot" ></span>
+          <span class="dot" ></span>
+          <span class="dot" ></span>
+          <span class="dot" ></span>
+          <span class="dot" ></span>
+    
+        </div>
+    
+    
+    
+        <br>
+    
+        <br>
+    
+
+    <section style="background-color: #3d84a8;" id="footer">
+        <center>
+            <div class="title-text">
+            <h2><b>Thank You For Visiting Our Website <i class="fa fa-smile-o" aria-hidden="true"></i></b></h2>
+            
+            </div>
+        </center>
+
+            <div class="footer-row">
+                <div class="footer-left">
+                    <a href="{% url 'aboutus' %}"><h1>About Us</h1><a>
+                    <p>Hello, Welcome to 'Search and pick'. </p>
+                    <p>We help you to get best services in a particular location you selected</p>
+                </div>
+                <div class="footer-right">
+                        <h1>Get In Touch</h1>
+                        <p>Address: #30 abc colony, xyz city <i class="fa fa-map-marker" aria-hidden="true"></i></p>
+                        <p>Mail: example@gmail.com <i class="fa fa-paper-plane" aria-hidden="true"></i></p>
+                        <p>Phone number: 1223334521 <i class="fa fa-phone" aria-hidden="true"></i></p>
+                </div>
+
+
+
+
+    </section>
+
+
+
+   
+      </body>
+    </html>

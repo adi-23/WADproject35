@@ -1,0 +1,63 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Redressed&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'travel/styles1.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <title></title>
+  </head>
+  <body style="background-color:#e4fbff">
+    <h1 style="font-family: 'Redressed', cursive; text-align: center;font-size:250%">Search & Pick <br>services</h1>
+    <br>
+    <div style="text-align:center;">
+      <h2>We will provide information about the following services</h2>
+
+    </div>
+    <ul style="margin-left:25%;font-size:20px;">
+      <li>Hotels</li>
+      <li>Restaurants</li>
+      <li>Shopping malls</li>
+      <li>Cinema halls</li>
+      <li>Hospitals</li>
+      <li>Places to visit</li>
+      
+    </ul>
+    <br>
+
+    <br>
+    <br>
+    {% comment %}
+    {% if user.is_authenticated %}
+      <a href="authentication/logout">Logout</a>
+    {% else %}
+    {% endcomment %}
+      <h3 style="margin-left:20%;">User:</h3>
+      <div class="btn-group" role="group" aria-label="Basic outlined example" style="margin-left:20%;">
+
+        <br>
+      <a href="authentication/login"><button type="button" class="btn btn-primary">Login</button></a>
+      <a href="authentication/serviceuser_register"><button type="button" class="btn btn-dark">Register</button></a>
+      </div>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <h3 style="margin-left:20%;">Owner:</h3>
+      <div class="btn-group" role="group" aria-label="Basic outlined example" style="margin-left:20%;">
+
+        <br>
+      <a href="authentication/login"><button type="button" class="btn btn-primary">Login</button></a>
+      <a href="authentication/serviceprovider_register"><button type="button" class="btn btn-dark">Register</button></a>
+      </div>
+
+
+
+
+
+    </body>
+  </html>
